@@ -1,0 +1,10 @@
+host = '192.168.43.172'; 	// hostname or IP address
+port = 61614
+topic = 'mqtt/devTest';       // topic to subscribe to
+//queue = 'testing/Q1'
+useTLS = false;
+username = "admin";
+password = "admin"; 
+// username = "devan";
+// password = "devan123";
+cleansession = true;
