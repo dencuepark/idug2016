@@ -1,0 +1,22 @@
+.app-content {
+  display: flex;
+  flex-flow: row wrap;
+  /*padding: 20px;*/
+  align-items: stretch;
+  margin-left: auto;
+  margin-right: auto;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.app-content md-card {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.card-col {
+  width: 100%;
+  max-width: 530px;
+}

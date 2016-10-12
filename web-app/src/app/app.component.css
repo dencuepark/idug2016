@@ -1,0 +1,28 @@
+/*.app-content {
+  padding: 20px;
+}*/
+
+.app-content md-card {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}
+
+md-toolbar .img-cont {
+  padding-top: 20px;
+  height: 64px;
+  width: auto;
+}
+
+.test md-toolbar-row {
+  background: yellow;
+}
+
+.md-primary {
+    background: #3E2723 !important;
+    color: white !important;
+}

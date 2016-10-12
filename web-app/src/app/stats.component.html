@@ -1,0 +1,45 @@
+<div class = "app-content" layout="row">
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <md-card-title>Active Shipments: {{activeShipments}}</md-card-title>
+      <md-card-content>
+        <base-chart class="chart"
+          [data]="doughnutChartData"
+          [labels]="doughnutChartLabels"
+          [chartType]="doughnutChartType"
+          [options]="doughnutChartOptions"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+        </base-chart>
+        <p></p><md-icon style="color: #ffa1b5;">label</md-icon>
+        Medical: {{doughnutChartData[0]}}
+        <p></p><md-icon style="color: #86c7f3;">label</md-icon>
+        Chilled: {{doughnutChartData[1]}}
+        <p></p><md-icon style="color: #ffe29a;">label</md-icon>
+        Fragile: {{doughnutChartData[2]}}
+      </md-card-content>
+    </md-card>
+  </div>
+  <div class="card-col" flex="50" layout="column" flex-sm="100">
+    <md-card>
+      <md-card-content>
+        <base-chart class="chart"
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [legend]="barChartLegend"
+          [chartType]="barChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)">
+        </base-chart>
+        <p></p><md-icon style="color: #ffa1b5;">label</md-icon>
+        Good Condition: {{goodCount}}
+        <p></p><md-icon style="color: #86c7f3;">label</md-icon>
+        Poor Condition: {{poorCount}}
+      </md-card-content>
+      <!-- <md-card-actions>
+        <button style="margin-left: 10px;" md-button color="accent" (click)="randomize()">Update</button>
+      </md-card-actions> -->
+    </md-card>
+  </div>
+</div>

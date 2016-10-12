@@ -1,0 +1,33 @@
+<div class = "app-content">
+  <md-card>
+    <div id="search-component">
+      <h4>Search By Device ID</h4>
+      <!--<mdl-textfield #searchBox
+            type="text"
+            label="Number..."
+            pattern="-?[0-9]*(\.[0-9]+)?"
+            error-msg="Input is not a number!"
+            (keyup)="search(searchBox.value)"></mdl-textfield>-->
+      <button md-icon-button>
+         <md-icon (click)="search(searchBox.value)"
+                  class="md-24">search</md-icon>
+      </button>
+      <md-input dividerColor="primary" #searchBox label="ID"
+                (keyup.enter)="search(searchBox.value)"
+                value="{{this.urlTerm}}">
+      </md-input>
+
+
+    </div>
+  </md-card>
+    <div>
+      <div *ngFor="let device of results"
+           (click)="gotoDetail(device)" class="search-result" >
+        <md-card><button md-button>{{device.DeviceId}}</button></md-card>
+      </div>
+      <!--<div *ngFor="let device of devices | async"
+           (click)="gotoDetail(device)" class="search-result" >
+        <md-card><button md-button>{{device.DeviceId}}</button></md-card>
+      </div>-->
+    </div>
+</div>

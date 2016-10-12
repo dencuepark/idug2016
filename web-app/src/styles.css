@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+}
+hr {
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top-style: solid !important;
+  border-right-style: solid !important;
+  border-bottom-style: solid !important;
+  border-left-style: solid !important;
+  border-top-color: rgb(255, 193, 7) !important;
+  border-right-color: rgb(255, 193, 7) !important;
+  border-bottom-color: rgb(255, 193, 7) !important;
+  border-left-color: rgb(255, 193, 7) !important;
+}
+body{
+  background-color: #E0E0E0;
+}
+.md-primary {
+    background: #3E2723 !important;
+    color: white !important;
+}
+.md-input-ripple {
+  background: #3E2723 !important;
+}
+.md-accent {
+  background: #9E9E9E !important;
+  color: white !important;
+}
+.md-warn {
+  background: #FF5722 !important;
+  color: white !important;
+}
+
+/*.md-tab-header{
+  background: #009688;
+}*/

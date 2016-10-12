@@ -1,0 +1,85 @@
+<div class="app-content" layout="row" *ngIf="device">
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <md-card-title>Info for device #{{device.DeviceId}}</md-card-title>
+      <md-card-subtitle>{{device.Type}}</md-card-subtitle>
+      <md-card-content>
+        <div *ngIf="device.Condition === 'poor'">
+          Shipment Status: <button md-icon-button>
+            <md-icon style="color:red;">priority_high</md-icon></button>
+        </div>
+        <div *ngIf="device.Condition === 'good'">
+          Shipment Status: <md-icon style="color:green;">check</md-icon>
+        </div>
+      </md-card-content>
+      <md-card-actions>
+        <button style="margin-left: 10px;" md-button color="accent" (click)="goBack()">Back</button>
+      </md-card-actions>
+    </md-card>
+  </div>
+</div>
+<div class="app-content" layout="row" *ngIf="device">
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <md-card-subtitle>Temperature</md-card-subtitle>
+      <md-card-content>
+        Highest Temperature Reached: {{device.TemperatureData.topTemp}}<br />
+        Ambient Temperature: {{device.TemperatureData.ambientTemperature}}<br />
+        Target Temperature: {{device.TemperatureData.targetTemperature}}<br />
+      </md-card-content>
+    </md-card>
+  </div>
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <md-card-subtitle>Acceleration</md-card-subtitle>
+      <md-card-content>
+        Highest Acceleration Reached: {{device.AccelerometerData.topAcc}}<br />
+        x": {{device.AccelerometerData.x}}<br />
+        y": {{device.AccelerometerData.y}}<br />
+        z": {{device.AccelerometerData.z}}<br />
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
+<div class="app-content" layout="row" *ngIf="device">
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <md-card-subtitle>Humidity</md-card-subtitle>
+      <md-card-content>
+        Humidity Temperature: {{device.HumidityData.humidityTemperature}}<br />
+        Relative Humidity: {{device.HumidityData.relativeHumidity}}<br />
+      </md-card-content>
+    </md-card>
+  </div>
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <md-card-subtitle>Magnetometer</md-card-subtitle>
+      <md-card-content>
+        x: {{device.MagnetometerData.x}}<br />
+        y: {{device.MagnetometerData.y}}<br />
+        z: {{device.MagnetometerData.z}}<br />
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
+<div class="app-content" layout="row" *ngIf="device">
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <md-card-subtitle>Gyroscope</md-card-subtitle>
+      <md-card-content>
+        x: {{device.GyroscopeData.x}}<br />
+        y: {{device.GyroscopeData.y}}<br />
+        z: {{device.GyroscopeData.z}}<br />
+      </md-card-content>
+    </md-card>
+  </div>
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <md-card-subtitle>Other Data</md-card-subtitle>
+      <md-card-content>
+        Barometer: {{device.BarometerData}}<br />
+        Luxometer: {{device.LuxometerData}}<br />
+      </md-card-content>
+    </md-card>
+  </div>
+</div>
