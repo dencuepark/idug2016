@@ -5,6 +5,60 @@ var app = express();
 const server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
+var couchbase = require('couchbase')
+var cluster = new couchbase.Cluster('couchbase://localhost/');
+var bucket = cluster.openBucket('default');
+var N1qlQuery = couchbase.N1qlQuery;
+
+// bucket.upsert({
+//   "MessageId": "3",
+//   "DeviceId": "1234",
+//   "Shipment Category":"dummy",
+//   "ShipmentId": "1Z345EBX",
+//   "Timestamp": "value",
+//   "TemperatureData": {
+//     "ambientTemperature": "33",
+//     "ambientTemperaturecelsiusToFahrenheit": "33",
+//     "targetTemperature": "35"
+//   },
+//   "AccelerometerData": {
+//     "x": "value",
+//     "y": "value",
+//     "z": "value"
+//   },
+//   "HumidityData": {
+//     "humidityTemperature": "value",
+//     "humidityTemperaturecelsiusToFahrenheit": "value",
+//     "relativeHumidity": "value"
+//   },
+//   "MagnetometerData": {
+//     "x": "value",
+//     "y": "value",
+//     "z": "value"
+//   },
+//   "BarometerData": "value",
+//   "GyroscopeData": {
+//     "x": "value",
+//     "y": "value",
+//     "z": "value"
+//   },
+//   "LuxometerData": "value"
+// });
+// bucket.upsert('user:king_arthur', {
+//         'email': 'kingarthur@couchbase.com', 'interests': ['Holy Grail', 'African Swallows']
+//     },
+//     function (err, result) {
+//         bucket.get('user:king_arthur', function (err, result) {
+//             console.log('Got result: %j', result.value);
+//             bucket.query(
+//                 N1qlQuery.fromString('SELECT * FROM default WHERE $1 in interests LIMIT 1'),
+//                 ['African Swallows'],
+//                 function (err, rows) {
+//                     console.log("Got rows: %j", rows);
+//                 });
+//         });
+//     });
+
 //Set the port to serve on
 //app.set('port', (process.env.PORT || 3000));
 
