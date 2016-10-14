@@ -594,18 +594,33 @@
 			obj.FirmwareString  = sensortag.getFirmwareString()
 		}
 		else{
-			if(obj.eval(topic1) == "")
-				obj.eval(topic1) = msg
+			if(obj[topic1] == null)
+				obj[topic1] = msg
 		}
 		
 	}
 	
+	
 	function sendMsg()
 	{
 				
-		message = new Paho.MQTT.Message(document.getElementById("messages").value);
-		message.destinationName = topic;
-		mqtt.send(message);
+		//message = new Paho.MQTT.Message(document.getElementById("messages").value);
+		//message.destinationName = topic;
+		//mqtt.send(message);
+		//obj = new Object()
+		//obj[topic1] = "admin"
+		//alert(obj[topic1] )
+		//alert(obj[topic1] == null)
+		
+		//topic = topic1
+		//var an_obj = { topic1 : "admin"}
+		//alert(an_obj)
+		//Object.entries(an_obj)
+		//alert(Object)
+		
+		//obj[topic1+"1"] = "admin1"
+		//var jsonString= JSON.stringify(obj)
+		//	alert("jsonString = "+jsonString)
 		//$('#topic').val(document.getElementById("messages").value);
 		
 		//mqtt.subscribe(queue, {qos: 0});
