@@ -137,7 +137,9 @@
 	<script>
 	// SensorTag object.
 	var sensortag
-
+	var obj
+	var StartTime
+	
 	function initialiseSensorTag()
 	{
 		// Create SensorTag CC2650 instance.
@@ -169,6 +171,8 @@
 			.magnetometerCallback(magnetometerHandler, 1000)
 			.gyroscopeCallback(gyroscopeHandler, 1000)
 			.luxometerCallback(luxometerHandler, 1000)
+			
+		StartTime = Math.floor(Date.now() / 1000)
 	}
 
 	function connect()
@@ -519,7 +523,7 @@
 		
     var mqtt;
     var reconnectTimeout = 30000;
-
+	
     function MQTTconnect() {
 		//alert(host)
         mqtt = new Paho.MQTT.Client(
@@ -571,27 +575,34 @@
 		//alert(message)
         var topic = message.destinationName;
         var payload = message.payloadString;
-document.getElementById("ws").innerHTML = 'Topic = mqtt/temperature <br> Payload = ' + payload ;
+	document.getElementById("ws").innerHTML = 'Topic = mqtt/temperature <br> Payload = ' + payload 
      
     };
-	
 	function sendMessage(msg,topic1)
 	{
-		//alert("topic1 = "+topic1)
-		//alert("msg = "+msg)
-		message = new Paho.MQTT.Message(msg);
-		message.destinationName = topic1;
-		mqtt.send(message);
-		//$('#topic').val(document.getElementById("messages").value);
+	
+		if(Math.floor(Date.now() / 1000) > (StartTime+1))
+		{ 
+			StartTime = Math.floor(Date.now() / 1000)
+			var jsonString= JSON.stringify(obj)
+			alert("jsonString = "+jsonString)
+			message = new Paho.MQTT.Message(jsonString)
+			message.destinationName = "SensorTag"
+			mqtt.send(message)
+			obj = new Object()
+			obj.DeviceModel = sensortag.getDeviceModel()
+			obj.FirmwareString  = sensortag.getFirmwareString()
+		}
+		else{
+			if(obj.eval(topic1) == "")
+				obj.eval(topic1) = msg
+		}
 		
-		//mqtt.subscribe(queue, {qos: 0});
-		//mqtt.subscribe(topic, {qos: 0});
-        //$('#topic').val(topic);
 	}
 	
 	function sendMsg()
 	{
-		
+				
 		message = new Paho.MQTT.Message(document.getElementById("messages").value);
 		message.destinationName = topic;
 		mqtt.send(message);
