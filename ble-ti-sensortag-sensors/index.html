@@ -366,9 +366,17 @@
 
 		// Update the value displayed.
 		displayValue('AccelerometerData', string)
-		sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/AccelerometerData/x")
-		sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/AccelerometerData/y")
-		sendMessage((z >= 0 ? '+' : '') + z.toFixed(5),"mqtt/AccelerometerData/z")
+		
+		var acceObj = new Object()
+		acceObj["x"] = (x >= 0 ? '+' : '') + x.toFixed(5)
+		acceObj["y"] = (y >= 0 ? '+' : '') + y.toFixed(5)
+		acceObj["z"] = (z >= 0 ? '+' : '') + z.toFixed(5)
+		
+		sendMessage(acceObj,"Accelerometer")
+		
+		//sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/AccelerometerData/x")
+		//sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/AccelerometerData/y")
+		//sendMessage((z >= 0 ? '+' : '') + z.toFixed(5),"mqtt/AccelerometerData/z")
 	}
 
 	function humidityHandler(data)
