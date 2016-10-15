@@ -560,8 +560,8 @@
      function onConnect() {
         $('#status').val('Connected to ' + host + ':' + port);
         // Connection succeeded; subscribe to our topic
-        mqtt.subscribe("mqtt/AccelerometerData/x", {qos: 0});
-        $('#topic').val("mqtt/AccelerometerData/x");
+        mqtt.subscribe(topic, {qos: 0});
+        $('#topic').val(topic);
     }
 
     function onConnectionLost(response) {
@@ -575,7 +575,7 @@
 		//alert(message)
         var topic = message.destinationName;
         var payload = message.payloadString;
-	document.getElementById("ws").innerHTML = 'Topic = mqtt/temperature <br> Payload = ' + payload 
+	document.getElementById("ws").innerHTML = 'Topic = mqtt/SensorTag <br> Payload = ' + payload 
      
     };
 	function sendMessage(msg,topic1)
