@@ -403,8 +403,8 @@
 		displayValue('HumidityData', string)
 		
 		var humiObj = new Object()
-		humiObj["humidityTemperature"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
-		humiObj["humidityTemperature-celsiusToFahrenheit"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
+		humiObj["Temperature"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
+		humiObj["celsiusToFahrenheit"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
 		humiObj["relativeHumidity"] = (h >= 0 ? '+' : '') + h.toFixed(2)
 		
 		sendMessage(humiObj,"Humidity")
@@ -612,8 +612,8 @@
      function onConnect() {
         $('#status').val('Connected to ' + host + ':' + port);
         // Connection succeeded; subscribe to our topic
-        mqtt.subscribe(topic, {qos: 0});
-        $('#topic').val(topic);
+        //mqtt.subscribe(topic, {qos: 0});
+        //$('#topic').val(topic);
     }
 
     function onConnectionLost(response) {
@@ -625,9 +625,9 @@
 
     function onMessageArrived(message) {
 		//alert(message)
-        var topic = message.destinationName;
-        var payload = message.payloadString;
-		document.getElementById("ws").innerHTML = 'Topic = mqtt/SensorTag <br> Payload = ' + payload 
+        //var topic = message.destinationName;
+        //var payload = message.payloadString;
+	//document.getElementById("ws").innerHTML = 'Topic = mqtt/SensorTag <br> Payload = ' + payload 
      
     };
 	function sendMessage(msg,topic1)
