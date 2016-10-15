@@ -1,6 +1,6 @@
 host = 'www.ws.amq.idug2016.link';      // hostname or IP address               
 port = 80                                                                       
-topic = 'mqtt/devTest';       // topic to subscribe to                          
+topic = 'mqtt/SensorTag';       // topic to subscribe to                          
 //queue = 'testing/Q1'                                                          
 useTLS = false;                                                                 
 username = "admin";                                                             

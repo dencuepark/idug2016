@@ -588,7 +588,7 @@
 			var jsonString= JSON.stringify(obj)
 			//alert("jsonString = "+jsonString)
 			message = new Paho.MQTT.Message(jsonString)
-			message.destinationName = "SensorTag"
+			message.destinationName = "mqtt/SensorTag"
 			mqtt.send(message)
 			//obj = new Object()
 			
