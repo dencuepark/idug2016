@@ -335,7 +335,7 @@
 		tempObj["ambientTemperature/ac"] = (ac >= 0 ? '+' : '') + ac.toFixed(2)
 		tempObj["ambientTemperature-celsiusToFahrenheit/af"] = (af >= 0 ? '+' : '') + af.toFixed(2)
 		tempObj["ambientTemperature/ac"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
-		tempObj["ambientTemperature/ac"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
+		tempObj["ambientTemperature-celsiusToFahrenheit/tf"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
 		
 		sendMessage(tempObj,"Temperature")
 		
@@ -401,9 +401,18 @@
 
 		// Update the value displayed.
 		displayValue('HumidityData', string)
-		sendMessage((tc >= 0 ? '+' : '') + tc.toFixed(2),"mqtt/HumidityData/humidityTemperature")
-		sendMessage((tf >= 0 ? '+' : '') + tf.toFixed(2) ,"mqtt/HumidityData/humidityTemperature-celsiusToFahrenheit")
-		sendMessage((h >= 0 ? '+' : '') + h.toFixed(2),"mqtt/HumidityData/relativeHumidity")
+		
+		var humiObj = new Object()
+		humiObj["humidityTemperature"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
+		humiObj["humidityTemperature-celsiusToFahrenheit"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
+		humiObj["relativeHumidity"] = (h >= 0 ? '+' : '') + h.toFixed(2)
+		
+		sendMessage(humiObj,"Humidity")
+		
+		
+		//sendMessage((tc >= 0 ? '+' : '') + tc.toFixed(2),"mqtt/HumidityData/humidityTemperature")
+		//sendMessage((tf >= 0 ? '+' : '') + tf.toFixed(2) ,"mqtt/HumidityData/humidityTemperature-celsiusToFahrenheit")
+		//sendMessage((h >= 0 ? '+' : '') + h.toFixed(2),"mqtt/HumidityData/relativeHumidity")
 	}
 
 	function magnetometerHandler(data)
@@ -427,9 +436,17 @@
 
 		// Update the value displayed.
 		displayValue('MagnetometerData', string)
-		sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/MagnetometerData/x")
-		sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/MagnetometerData/y")
-		sendMessage((z >= 0 ? '+' : '') + z.toFixed(5),"mqtt/MagnetometerData/z")
+		
+		var mangObj = new Object()
+		mangObj["x"] = (x >= 0 ? '+' : '') + x.toFixed(5)
+		mangObj["y"] = (y >= 0 ? '+' : '') + y.toFixed(5)
+		mangObj["z"] = (z >= 0 ? '+' : '') + z.toFixed(5)
+		
+		sendMessage(mangObj,"Magnetometer")
+		
+		//sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/MagnetometerData/x")
+		//sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/MagnetometerData/y")
+		//sendMessage((z >= 0 ? '+' : '') + z.toFixed(5),"mqtt/MagnetometerData/z")
 	}
 
 	function barometerHandler(data)
@@ -446,7 +463,13 @@
 
 		// Update the value displayed.
 		displayValue('BarometerData', string)
-		sendMessage(pressure.toPrecision(5),"mqtt/BarometerData/pressure")
+		
+		var baroObj = new Object()
+		baroObj["pressure"] = pressure.toPrecision(5)
+		
+		sendMessage(baroObj,"Barometer")
+		
+		//sendMessage(pressure.toPrecision(5),"mqtt/BarometerData/pressure")
 	}
 
 	function gyroscopeHandler(data)
@@ -467,9 +490,16 @@
 
 		// Update the value displayed.
 		displayValue('GyroscopeData', string)
-		sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/GyroscopeData/x")
-		sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/GyroscopeData/y")
-		sendMessage((z >= 0 ? '+' : '') + z.toFixed(5),"mqtt/GyroscopeData/z")
+		var gyroObj = new Object()
+		gyroObj["x"] = (x >= 0 ? '+' : '') + x.toFixed(5)
+		gyroObj["y"] = (y >= 0 ? '+' : '') + y.toFixed(5)
+		gyroObj["z"] = (z >= 0 ? '+' : '') + z.toFixed(5)
+		
+		sendMessage(gyroObj,"Gyroscope")
+		
+		//sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/GyroscopeData/x")
+		//sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/GyroscopeData/y")
+		//sendMessage((z >= 0 ? '+' : '') + z.toFixed(5),"mqtt/GyroscopeData/z")
 	}
 
 	function luxometerHandler(data)
@@ -484,7 +514,12 @@
 
 		// Update the value displayed.
 		displayValue('LuxometerData', string)
-		sendMessage(value.toPrecision(5),"mqtt/LuxometerData/value")
+		var luxoObj = new Object()
+		luxoObj["value"] = value.toPrecision(5)
+		
+		sendMessage(luxoObj,"Luxometer")
+		
+		//sendMessage(value.toPrecision(5),"mqtt/LuxometerData/value")
 	}
 
 	function displayValue(elementId, value)
@@ -592,7 +627,7 @@
 		//alert(message)
         var topic = message.destinationName;
         var payload = message.payloadString;
-	document.getElementById("ws").innerHTML = 'Topic = mqtt/SensorTag <br> Payload = ' + payload 
+		document.getElementById("ws").innerHTML = 'Topic = mqtt/SensorTag <br> Payload = ' + payload 
      
     };
 	function sendMessage(msg,topic1)
