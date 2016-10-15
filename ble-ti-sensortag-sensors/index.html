@@ -137,7 +137,7 @@
 	<script>
 	// SensorTag object.
 	var sensortag
-	var obj
+	var obj = new Object()
 	var StartTime
 	
 	function initialiseSensorTag()
@@ -584,18 +584,20 @@
 		if(Math.floor(Date.now() / 1000) > (StartTime+1))
 		{ 
 			StartTime = Math.floor(Date.now() / 1000)
+			//alert(obj)
 			var jsonString= JSON.stringify(obj)
-			alert("jsonString = "+jsonString)
+			//alert("jsonString = "+jsonString)
 			message = new Paho.MQTT.Message(jsonString)
 			message.destinationName = "SensorTag"
 			mqtt.send(message)
-			obj = new Object()
-			obj.DeviceModel = sensortag.getDeviceModel()
-			obj.FirmwareString  = sensortag.getFirmwareString()
+			//obj = new Object()
+			
 		}
 		else{
-			if(obj[topic1] == null)
-				obj[topic1] = msg
+			obj.DeviceModel = sensortag.getDeviceModel()
+			obj.FirmwareString = sensortag.getFirmwareString()
+			obj.TimeStamp = Math.floor(Date.now() / 1000)
+			obj[topic1] = msg
 		}
 		
 	}
