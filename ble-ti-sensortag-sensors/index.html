@@ -330,10 +330,19 @@
 
 		// Update the value displayed.
 		displayValue('TemperatureData', string)
-		sendMessage((ac >= 0 ? '+' : '') + ac.toFixed(2) ,"mqtt/TemperatureData/ambientTemperature/ac")
-		sendMessage((af >= 0 ? '+' : '') + af.toFixed(2),"mqtt/TemperatureData/ambientTemperature-celsiusToFahrenheit/af")
-		sendMessage((tc >= 0 ? '+' : '') + tc.toFixed(2),"mqtt/TemperatureData/targetTemperature/tc")
-		sendMessage((tf >= 0 ? '+' : '') + tf.toFixed(2),"mqtt/TemperatureData/ambientTemperature-celsiusToFahrenheit/tf")
+		
+		var tempObj = new Object()
+		tempObj["ambientTemperature/ac"] = (ac >= 0 ? '+' : '') + ac.toFixed(2)
+		tempObj["ambientTemperature-celsiusToFahrenheit/af"] = (af >= 0 ? '+' : '') + af.toFixed(2)
+		tempObj["ambientTemperature/ac"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
+		tempObj["ambientTemperature/ac"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
+		
+		sendMessage(tempObj,"Temperature")
+		
+		//sendMessage((ac >= 0 ? '+' : '') + ac.toFixed(2) ,"mqtt/TemperatureData/ambientTemperature/ac")
+		//sendMessage((af >= 0 ? '+' : '') + af.toFixed(2),"mqtt/TemperatureData/ambientTemperature-celsiusToFahrenheit/af")
+		//sendMessage((tc >= 0 ? '+' : '') + tc.toFixed(2),"mqtt/TemperatureData/targetTemperature/tc")
+		//sendMessage((tf >= 0 ? '+' : '') + tf.toFixed(2),"mqtt/TemperatureData/ambientTemperature-celsiusToFahrenheit/tf")
 	}
 
 	function accelerometerHandler(data)
