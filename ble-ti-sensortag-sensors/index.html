@@ -612,8 +612,8 @@
      function onConnect() {
         $('#status').val('Connected to ' + host + ':' + port);
         // Connection succeeded; subscribe to our topic
-        mqtt.subscribe(topic, {qos: 0});
-        $('#topic').val(topic);
+        //mqtt.subscribe(topic, {qos: 0});
+        //$('#topic').val(topic);
     }
 
     function onConnectionLost(response) {
@@ -625,9 +625,9 @@
 
     function onMessageArrived(message) {
 		//alert(message)
-        var topic = message.destinationName;
-        var payload = message.payloadString;
-		document.getElementById("ws").innerHTML = 'Topic = mqtt/SensorTag <br> Payload = ' + payload 
+        //var topic = message.destinationName;
+        //var payload = message.payloadString;
+		//document.getElementById("ws").innerHTML = 'Topic = mqtt/SensorTag <br> Payload = ' + payload 
      
     };
 	function sendMessage(msg,topic1)
@@ -638,7 +638,7 @@
 			StartTime = Math.floor(Date.now() / 1000)
 			//alert(obj)
 			var jsonString= JSON.stringify(obj)
-			alert("jsonString = "+jsonString)
+			//alert("jsonString = "+jsonString)
 			message = new Paho.MQTT.Message(jsonString)
 			message.destinationName = "mqtt/SensorTag"
 			mqtt.send(message)
@@ -649,7 +649,7 @@
 			obj.DeviceModel = sensortag.getDeviceModel()
 			obj.FirmwareString = sensortag.getFirmwareString()
 			obj.TimeStamp = Math.floor(Date.now() / 1000)
-			//obj[topic1] = msg
+			obj[topic1] = msg
 		}
 		
 	}
