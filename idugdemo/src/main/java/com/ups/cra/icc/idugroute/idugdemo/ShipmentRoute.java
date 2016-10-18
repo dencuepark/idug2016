@@ -30,8 +30,8 @@ public class ShipmentRoute extends RouteBuilder {
 
 
 		
-	     //from("activemq:topic:mqtt.SensorTag")	
-		from("activemq:topic:VidhyaTest")	 
+	     	from("activemq:topic:mqtt.SensorTag")	
+		//from("activemq:topic:VidhyaTest")	 
 		.process(new Processor(){
 
 			@Override
