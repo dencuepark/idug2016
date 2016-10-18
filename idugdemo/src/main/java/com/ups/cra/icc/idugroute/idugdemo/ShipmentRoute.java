@@ -40,7 +40,7 @@ public class ShipmentRoute extends RouteBuilder {
 			}
 		})
 		
-		.setHeader(CouchbaseConstants.HEADER_ID,constant(new Random(System.currentTimeMillis()).nextInt())).id("shipmentHeaderId")
+		.setHeader(CouchbaseConstants.HEADER_ID,constant(new Random().nextInt(System.currentTimeMillis()))).id("shipmentHeaderId")
 		//.to("couchbase:http://localhost:11210/idug-sample?operation=" + CouchbaseConstants.COUCHBASE_PUT)
 		.to("couchbase:http://172.30.10.67:11210/shipment?operation=" + CouchbaseConstants.COUCHBASE_PUT)
 		.end();
