@@ -15,7 +15,7 @@ public class ShipmentRoute extends RouteBuilder {
     @Alias("activemq")
     ActiveMQComponent activeMQComponent;
 	*/
-	Random random = new Random();
+	
 	@Override
 	public void configure() throws Exception {
 		
@@ -41,11 +41,12 @@ public class ShipmentRoute extends RouteBuilder {
 			}
 		})
 	
-		.setHeader(CouchbaseConstants.HEADER_ID,constant(random.nextInt())).id("shipmentHeaderId")
+		//.setHeader(CouchbaseConstants.HEADER_ID,constant(new Random().nextInt())).id("shipmentHeaderId")
 		.process(new Processor(){
 
 			@Override
 			public void process(Exchange exchange) throws Exception {
+				exchange.getIn().setHeader(CouchbaseConstants.HEADER_ID, new Random().nextInt());
 				System.out.println("Couchbase Header ID : " + exchange.getIn().getHeader(CouchbaseConstants.HEADER_ID));	
 			}
 		})
