@@ -40,8 +40,15 @@ public class ShipmentRoute extends RouteBuilder {
 				System.out.println("Shipment Route running : " + exchange.getIn().getBody(String.class));	
 			}
 		})
-		
+	
 		.setHeader(CouchbaseConstants.HEADER_ID,constant(random.nextInt())).id("shipmentHeaderId")
+		.process(new Processor(){
+
+			@Override
+			public void process(Exchange exchange) throws Exception {
+				System.out.println("Couchbase Header ID : " + exchange.getIn().getHeader(CouchbaseConstants.HEADER_ID));	
+			}
+		})
 		//.to("couchbase:http://localhost:11210/idug-sample?operation=" + CouchbaseConstants.COUCHBASE_PUT)
 		.to("couchbase:http://172.30.10.67:11210/shipment?operation=" + CouchbaseConstants.COUCHBASE_PUT)
 		.end();
