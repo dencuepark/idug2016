@@ -638,7 +638,7 @@
 			StartTime = Math.floor(Date.now() / 1000)
 			//alert(obj)
 			var jsonString= JSON.stringify(obj)
-			//alert("jsonString = "+jsonString)
+			alert("jsonString = "+jsonString)
 			message = new Paho.MQTT.Message(jsonString)
 			message.destinationName = "mqtt/SensorTag"
 			mqtt.send(message)
@@ -649,7 +649,7 @@
 			obj.DeviceModel = sensortag.getDeviceModel()
 			obj.FirmwareString = sensortag.getFirmwareString()
 			obj.TimeStamp = Math.floor(Date.now() / 1000)
-			obj[topic1] = msg
+			//obj[topic1] = msg
 		}
 		
 	}
