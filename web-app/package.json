@@ -12,7 +12,7 @@
   },
   "engines": {
     "npm": ">=3.10.8"
-  }
+  },
   "private": true,
   "dependencies": {
     "@angular/common": "2.0.0",
