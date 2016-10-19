@@ -1,0 +1,12 @@
+com\ups\cra\icc\idugroute\idugdemo\ShipmentRoute$1.class
+com\ups\cra\icc\idugroute\idugdemo\ShipmentRoute.class
+com\ups\cra\icc\idugroute\pojo\AccelerometerData.class
+com\ups\cra\icc\idugroute\idugdemo\CleanupRoute.class
+com\ups\cra\icc\idugroute\idugdemo\ViewJsonRoute.class
+com\ups\cra\icc\idugroute\pojo\MagnetometerData.class
+com\ups\cra\icc\idugroute\pojo\DeviceInfo.class
+com\ups\cra\icc\idugroute\pojo\Device.class
+com\ups\cra\icc\idugroute\idugdemo\MainApp.class
+com\ups\cra\icc\idugroute\pojo\GyroscopeData.class
+com\ups\cra\icc\idugroute\pojo\TemperatureData.class
+com\ups\cra\icc\idugroute\pojo\HumidityData.class

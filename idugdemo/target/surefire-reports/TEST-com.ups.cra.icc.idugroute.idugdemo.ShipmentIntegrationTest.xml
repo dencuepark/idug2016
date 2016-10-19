@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.ups.cra.icc.idugroute.idugdemo.ShipmentIntegrationTest" time="7.803" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.7.0_75\jre\bin"/>
+    <property name="java.vm.version" value="24.75-b04"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="$M2_HOME"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="D:\IDUG-DEMO\IDUG\idugdemo"/>
+    <property name="java.runtime.version" value="1.7.0_75-b13"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.7.0_75\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\ftk1nsy\AppData\Local\Temp\"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="D:\IDUG-DEMO\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8176005905603631594.tmp"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.7.0_75\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Java\jdk1.7.0_75/bin;C:\ProgramData\Oracle\Java\javapath;C:\Users\ftk1nsy\apache-maven-3.3.3\apache-maven-3.3.3\bin;C:\Program Files\Java\jdk1.7.0_75\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\PrivateAssemblies\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;C:\Users\ftk1nsy\UnxUtils\bin;C:\Users\ftk1nsy\UnxUtils\usr\local\wbin;C:\Program Files\WinZip;C:\Program Files\VisualSVN Server\bin;C:\Program Files\nodejs\;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\ManagementStudio\;c:\Program Files (x86)\Microsoft SQL Server\110\Tools\Binn\;c:\Program Files (x86)\Microsoft SQL Server\110\DTS\Binn\;C:\Windows\system32\config\systemprofile\.dnx\bin;C:\Program Files\Microsoft DNX\Dnvm\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\CheckPoint\Endpoint Security\Endpoint Common\bin;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\nodejs;C:\HashiCorp\Vagrant\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Git\cmd;;C:\Program Files\Docker Toolbox;C:\Users\ftk1nsy\AppData\Roaming\npm;."/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\ftk1nsy"/>
+    <property name="user.timezone" value="America/New_York"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="ftk1nsy"/>
+    <property name="java.class.path" value="C:\Users\ftk1nsy\apache-maven-3.3.3\apache-maven-3.3.3\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk1.7.0_75\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -B install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_75"/>
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.7.0_75\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.7.0_75\jre\lib\resources.jar;C:\Program Files\Java\jdk1.7.0_75\jre\lib\rt.jar;C:\Program Files\Java\jdk1.7.0_75\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.7.0_75\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.7.0_75\jre\lib\jce.jar;C:\Program Files\Java\jdk1.7.0_75\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.7.0_75\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.7.0_75\jre\classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\Users\ftk1nsy\apache-maven-3.3.3\apache-maven-3.3.3"/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase name="testIntegration" classname="com.ups.cra.icc.idugroute.idugdemo.ShipmentIntegrationTest" time="7.803">
+    <error message="Exception occurred during execution on the exchange: Exchange[Message: { &quot;MessageId&quot;: &quot;5&quot;,&quot;DeviceId&quot;: &quot;12345&quot;, &quot;ShipmentCategory&quot;: &quot;test&quot;, &quot;ShipmentId&quot;: &quot;Vidhya&quot;, &quot;Timestamp&quot;: &quot;value&quot;,&quot;LuxometerData&quot;: &quot;value&quot;}]" type="org.apache.camel.CamelExecutionException">org.apache.camel.CamelExecutionException: Exception occurred during execution on the exchange: Exchange[Message: { "MessageId": "5","DeviceId": "12345", "ShipmentCategory": "test", "ShipmentId": "Vidhya", "Timestamp": "value","LuxometerData": "value"}]
+	at java.net.DualStackPlainSocketImpl.waitForConnect(Native Method)
+	at java.net.DualStackPlainSocketImpl.socketConnect(DualStackPlainSocketImpl.java:85)
+	at java.net.AbstractPlainSocketImpl.doConnect(AbstractPlainSocketImpl.java:339)
+	at java.net.AbstractPlainSocketImpl.connectToAddress(AbstractPlainSocketImpl.java:200)
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:182)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:579)
+	at org.apache.activemq.transport.tcp.TcpTransport.connect(TcpTransport.java:504)
+	at org.apache.activemq.transport.tcp.TcpTransport.doStart(TcpTransport.java:467)
+	at org.apache.activemq.util.ServiceSupport.start(ServiceSupport.java:55)
+	at org.apache.activemq.transport.AbstractInactivityMonitor.start(AbstractInactivityMonitor.java:132)
+	at org.apache.activemq.transport.TransportFilter.start(TransportFilter.java:58)
+	at org.apache.activemq.transport.WireFormatNegotiator.start(WireFormatNegotiator.java:72)
+	at org.apache.activemq.transport.TransportFilter.start(TransportFilter.java:58)
+	at org.apache.activemq.transport.TransportFilter.start(TransportFilter.java:58)
+	at org.apache.activemq.ActiveMQConnectionFactory.createActiveMQConnection(ActiveMQConnectionFactory.java:273)
+	at org.apache.activemq.ActiveMQConnectionFactory.createActiveMQConnection(ActiveMQConnectionFactory.java:238)
+	at org.apache.activemq.ActiveMQConnectionFactory.createConnection(ActiveMQConnectionFactory.java:184)
+	at org.springframework.jms.support.JmsAccessor.createConnection(JmsAccessor.java:180)
+	at org.springframework.jms.core.JmsTemplate.execute(JmsTemplate.java:483)
+	at org.apache.camel.component.jms.JmsConfiguration$CamelJmsTemplate.send(JmsConfiguration.java:235)
+	at org.apache.camel.component.jms.JmsProducer.doSend(JmsProducer.java:413)
+	at org.apache.camel.component.jms.JmsProducer.processInOnly(JmsProducer.java:367)
+	at org.apache.camel.component.jms.JmsProducer.process(JmsProducer.java:153)
+	at org.apache.camel.processor.CamelInternalProcessor.process(CamelInternalProcessor.java:191)
+	at org.apache.camel.util.AsyncProcessorHelper.process(AsyncProcessorHelper.java:109)
+	at org.apache.camel.processor.UnitOfWorkProducer.process(UnitOfWorkProducer.java:68)
+	at org.apache.camel.impl.ProducerCache$2.doInProducer(ProducerCache.java:375)
+	at org.apache.camel.impl.ProducerCache$2.doInProducer(ProducerCache.java:343)
+	at org.apache.camel.impl.ProducerCache.doInProducer(ProducerCache.java:233)
+	at org.apache.camel.impl.ProducerCache.sendExchange(ProducerCache.java:343)
+	at org.apache.camel.impl.ProducerCache.send(ProducerCache.java:184)
+	at org.apache.camel.impl.DefaultProducerTemplate.send(DefaultProducerTemplate.java:124)
+	at org.apache.camel.impl.DefaultProducerTemplate.sendBodyAndHeader(DefaultProducerTemplate.java:163)
+	at org.apache.camel.impl.DefaultProducerTemplate.sendBodyAndHeader(DefaultProducerTemplate.java:159)
+	at com.ups.cra.icc.idugroute.idugdemo.ShipmentIntegrationTest.testIntegration(ShipmentIntegrationTest.java:37)
+</error>
+    <system-out><![CDATA[[                          main] ShipmentIntegrationTest        INFO  ********************************************************************************
+[                          main] ShipmentIntegrationTest        INFO  Testing: testIntegration(com.ups.cra.icc.idugroute.idugdemo.ShipmentIntegrationTest)
+[                          main] ShipmentIntegrationTest        INFO  ********************************************************************************
+[                          main] ileSystemXmlApplicationContext INFO  Refreshing org.springframework.context.support.FileSystemXmlApplicationContext@26ff0fcd: startup date [Thu Oct 13 14:17:49 EDT 2016]; root of context hierarchy
+[                          main] XmlBeanDefinitionReader        INFO  Loading XML bean definitions from file [D:\IDUG-DEMO\IDUG\idugdemo\src\main\resources\META-INF\spring\camel-context.xml]
+[                          main] SpringCamelContext             INFO  Apache Camel 2.15.1 (CamelContext: camel-3) is starting
+[                          main] DefaultManagementStrategy      INFO  JMX is disabled
+[                          main] DefaultTypeConverter           INFO  Loaded 186 type converters
+[                          main] SpringCamelContext             INFO  AllowUseOriginalMessage is enabled. If access to the original message is not needed, then its recommended to turn this option off as it may improve performance.
+[                          main] SpringCamelContext             INFO  StreamCaching is not in use. If using streams then its recommended to enable stream caching. See more details at http://camel.apache.org/stream-caching.html
+[                          main] SpringCamelContext             INFO  Route: route3 started and consuming from: Endpoint[activemq://topic:mqtt.ShipmentInfo]
+[                          main] SpringCamelContext             INFO  Route: route4 started and consuming from: Endpoint[direct://cleanup]
+[                          main] SpringCamelContext             INFO  Total 2 routes, of which 2 is started.
+[                          main] SpringCamelContext             INFO  Apache Camel 2.15.1 (CamelContext: camel-3) started in 1.259 seconds
+[                          main] DefaultShutdownStrategy        INFO  Starting to graceful shutdown 1 routes (timeout 10 seconds)
+[JmsConsumer[mqtt.ShipmentInfo]] ultJmsMessageListenerContainer INFO  JMS message listener invoker needs to establish shared Connection
+[el-3) thread #3 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: route3 shutdown complete, was consuming from: Endpoint[activemq://topic:mqtt.ShipmentInfo]
+[                          main] DefaultShutdownStrategy        INFO  Graceful shutdown of 1 routes completed in 4 seconds
+[                          main] SpringCamelContext             INFO  Route: route3 is stopped, was consuming from: Endpoint[activemq://topic:mqtt.ShipmentInfo]
+[                          main] SpringCamelContext             INFO  Route: route3 is shutdown and removed, was consuming from: Endpoint[activemq://topic:mqtt.ShipmentInfo]
+[                          main] AdviceWithTasks                INFO  AdviceWith replace input from [activemq:topic:mqtt.ShipmentInfo] --> [direct:shipmentInfo]
+[                          main] AdviceWithTasks                INFO  AdviceWith (shipmentHeaderId) : [SetHeader[CCB_ID, {1968056262}]] --> remove
+[                          main] RouteDefinition                INFO  AdviceWith route after: Route(route3)[[From[direct:shipmentInfo]] -> [process[Processor@0x3d683b3c], To[couchbase:http://localhost:11210/idug-sample?operation=CCB_PUT]]]
+[                          main] SpringCamelContext             INFO  Route: route3 started and consuming from: Endpoint[direct://shipmentInfo]
+[                          main] CouchbaseProducer              INFO  Type of operation: DELETE
+[                          main] ShipmentIntegrationTest        INFO  ********************************************************************************
+[                          main] ShipmentIntegrationTest        INFO  Testing done: testIntegration(com.ups.cra.icc.idugroute.idugdemo.ShipmentIntegrationTest)
+[                          main] ShipmentIntegrationTest        INFO  Took: 6.127 seconds (6127 millis)
+[                          main] ShipmentIntegrationTest        INFO  ********************************************************************************
+[                          main] SpringCamelContext             INFO  Apache Camel 2.15.1 (CamelContext: camel-3) is shutting down
+[                          main] DefaultShutdownStrategy        INFO  Starting to graceful shutdown 2 routes (timeout 10 seconds)
+[el-3) thread #3 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: route3 shutdown complete, was consuming from: Endpoint[direct://shipmentInfo]
+[el-3) thread #3 - ShutdownTask] DefaultShutdownStrategy        INFO  Route: route4 shutdown complete, was consuming from: Endpoint[direct://cleanup]
+[                          main] DefaultShutdownStrategy        INFO  Graceful shutdown of 2 routes completed in 0 seconds
+[                          main] SpringCamelContext             INFO  Apache Camel 2.15.1 (CamelContext: camel-3) uptime 7.390 seconds
+[                          main] SpringCamelContext             INFO  Apache Camel 2.15.1 (CamelContext: camel-3) is shutdown in 0.002 seconds
+[                          main] ileSystemXmlApplicationContext INFO  Closing org.springframework.context.support.FileSystemXmlApplicationContext@26ff0fcd: startup date [Thu Oct 13 14:17:49 EDT 2016]; root of context hierarchy
+]]></system-out>
+    <system-err><![CDATA[2016-10-13 14:17:49.983 INFO net.spy.memcached.auth.AuthThread:  Authenticated to localhost/127.0.0.1:11210
+2016-10-13 14:17:49.986 INFO com.couchbase.client.vbucket.provider.BucketConfigurationProvider:  Could bootstrap through carrier publication.
+2016-10-13 14:17:49.988 INFO com.couchbase.client.CouchbaseConnection:  Added {QA sa=localhost/127.0.0.1:11210, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue
+2016-10-13 14:17:49.989 INFO com.couchbase.client.CouchbaseClient:  CouchbaseConnectionFactory{bucket='idug-sample', nodes=[http://localhost:11210/pools], order=RANDOM, opTimeout=2500, opQueue=16384, opQueueBlockTime=10000, obsPollInt=10, obsPollMax=500, obsTimeout=5000, viewConns=10, viewTimeout=75000, viewWorkers=1, configCheck=10, reconnectInt=1100, failureMode=Redistribute, hashAlgo=NATIVE_HASH, authWaitTime=2500}
+2016-10-13 14:17:49.991 INFO com.couchbase.client.CouchbaseClient:  viewmode property isn't defined. Setting viewmode to production mode
+2016-10-13 14:17:50.092 INFO net.spy.memcached.auth.AuthThread:  Authenticated to localhost/127.0.0.1:11210
+2016-10-13 14:17:50.099 INFO net.spy.memcached.auth.AuthThread:  Authenticated to localhost/127.0.0.1:11210
+2016-10-13 14:17:50.102 INFO com.couchbase.client.vbucket.provider.BucketConfigurationProvider:  Could bootstrap through carrier publication.
+2016-10-13 14:17:50.103 INFO com.couchbase.client.CouchbaseConnection:  Added {QA sa=localhost/127.0.0.1:11210, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue
+2016-10-13 14:17:50.104 INFO com.couchbase.client.CouchbaseClient:  CouchbaseConnectionFactory{bucket='idug-sample', nodes=[http://localhost:11210/pools], order=RANDOM, opTimeout=2500, opQueue=16384, opQueueBlockTime=10000, obsPollInt=10, obsPollMax=500, obsTimeout=5000, viewConns=10, viewTimeout=75000, viewWorkers=1, configCheck=10, reconnectInt=1100, failureMode=Redistribute, hashAlgo=NATIVE_HASH, authWaitTime=2500}
+2016-10-13 14:17:50.107 INFO com.couchbase.client.CouchbaseClient:  viewmode property isn't defined. Setting viewmode to production mode
+2016-10-13 14:17:50.209 INFO net.spy.memcached.auth.AuthThread:  Authenticated to localhost/127.0.0.1:11210
+2016-10-13 14:17:56.226 INFO net.spy.memcached.auth.AuthThread:  Authenticated to localhost/127.0.0.1:11210
+2016-10-13 14:17:56.229 INFO com.couchbase.client.vbucket.provider.BucketConfigurationProvider:  Could bootstrap through carrier publication.
+2016-10-13 14:17:56.231 INFO com.couchbase.client.CouchbaseConnection:  Added {QA sa=localhost/127.0.0.1:11210, #Rops=0, #Wops=0, #iq=0, topRop=null, topWop=null, toWrite=0, interested=0} to connect queue
+2016-10-13 14:17:56.232 INFO com.couchbase.client.CouchbaseClient:  CouchbaseConnectionFactory{bucket='idug-sample', nodes=[http://localhost:11210/pools], order=RANDOM, opTimeout=2500, opQueue=16384, opQueueBlockTime=10000, obsPollInt=10, obsPollMax=500, obsTimeout=5000, viewConns=10, viewTimeout=75000, viewWorkers=1, configCheck=10, reconnectInt=1100, failureMode=Redistribute, hashAlgo=NATIVE_HASH, authWaitTime=2500}
+2016-10-13 14:17:56.236 INFO com.couchbase.client.CouchbaseClient:  viewmode property isn't defined. Setting viewmode to production mode
+2016-10-13 14:17:56.340 INFO net.spy.memcached.auth.AuthThread:  Authenticated to localhost/127.0.0.1:11210
+]]></system-err>
+  </testcase>
+</testsuite>
