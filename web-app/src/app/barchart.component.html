@@ -1,10 +1,10 @@
-<base-chart class="chart"
+<canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
             [legend]="barChartLegend"
             [chartType]="barChartType"
             (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></base-chart>
+            (chartClick)="chartClicked($event)"></canvas>
 
 <button md-button color="accent" (click)="randomize()">Update</button>

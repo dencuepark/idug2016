@@ -11,7 +11,7 @@ export class DeviceSearchService {
   search(term: string): Observable<Device[]> {
     return this.http
                /*.get(`/app/test/?DeviceId=${term}`)*/
-               .get(`/app/test/${term}`)
+               .get(`/app/search/${term}`)
                .map((r: Response) => r.json().data as Device[]);
   }
 

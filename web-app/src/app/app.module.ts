@@ -12,7 +12,7 @@ import { MdInputModule } from '@angular2-material/input';
 import { MdIconModule } from '@angular2-material/icon';
 
 import { ChartsModule } from 'ng2-charts/ng2-charts'
-
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 //import { MdlModule } from 'angular2-mdl';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
@@ -24,6 +24,7 @@ import { BarChartComponent } from './barchart.component';
 import { TopbarComponent } from './topbar.component';
 import { DeviceSearchComponent } from './device-search.component';
 import { DeviceDetailComponent } from './device-detail.component';
+import { MapComponent } from './map.component';
 
 import { DeviceService } from './device.service';
 import { StatsService } from './stats.service';
@@ -38,6 +39,7 @@ import { routing } from './app.routing';
     DeviceDetailComponent,
     DevicesComponent,
     DeviceSearchComponent,
+    MapComponent,
     StatsComponent,
     TopbarComponent
   ],
@@ -53,7 +55,10 @@ import { routing } from './app.routing';
     MdInputModule.forRoot(),
     MdToolbarModule.forRoot(),
     //MdlModule,
-    routing
+    routing,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCfms1rK_B4oj1iAqb-OD9NtggpFer-gaY'
+    })
   ],
   providers: [DeviceService, StatsService],
   bootstrap: [AppComponent]

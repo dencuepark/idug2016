@@ -1,14 +1,16 @@
-<div class="app-content" layout="row" *ngIf="device">
+<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
-    <md-card>
+    <md-card style="min-height:200px;">
       <md-card-title>Info for device #{{device.DeviceId}}</md-card-title>
-      <md-card-subtitle>{{device.Type}}</md-card-subtitle>
+      <md-card-subtitle>{{device.ShipmentCategory}}</md-card-subtitle>
       <md-card-content>
-        <div *ngIf="device.Condition === 'poor'">
+        <!-- <div *ngIf="device.Condition === 'poor'"> -->
+        <div *ngIf="maxTemp > 55">
           Shipment Status: <button md-icon-button>
             <md-icon style="color:red;">priority_high</md-icon></button>
         </div>
-        <div *ngIf="device.Condition === 'good'">
+        <!-- <div *ngIf="device.Condition === 'good'"> -->
+        <div *ngIf="maxTemp <= 55">
           Shipment Status: <md-icon style="color:green;">check</md-icon>
         </div>
       </md-card-content>
@@ -17,13 +19,18 @@
       </md-card-actions>
     </md-card>
   </div>
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <map-component></map-component>
+    </md-card>
+  </div>
 </div>
-<div class="app-content" layout="row" *ngIf="device">
+<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
       <md-card-subtitle>Temperature</md-card-subtitle>
       <md-card-content>
-        Highest Temperature Reached: {{device.TemperatureData.topTemp}}<br />
+        Highest Temperature Reached: {{deviceRecords.temperature}}<br />
         Ambient Temperature: {{device.TemperatureData.ambientTemperature}}<br />
         Target Temperature: {{device.TemperatureData.targetTemperature}}<br />
       </md-card-content>
@@ -33,7 +40,7 @@
     <md-card>
       <md-card-subtitle>Acceleration</md-card-subtitle>
       <md-card-content>
-        Highest Acceleration Reached: {{device.AccelerometerData.topAcc}}<br />
+        Highest Acceleration Reached: {{deviceRecords.acceleration}}<br />
         x": {{device.AccelerometerData.x}}<br />
         y": {{device.AccelerometerData.y}}<br />
         z": {{device.AccelerometerData.z}}<br />
@@ -41,7 +48,7 @@
     </md-card>
   </div>
 </div>
-<div class="app-content" layout="row" *ngIf="device">
+<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
       <md-card-subtitle>Humidity</md-card-subtitle>
@@ -55,6 +62,7 @@
     <md-card>
       <md-card-subtitle>Magnetometer</md-card-subtitle>
       <md-card-content>
+        Highest Magnetization Reached: {{deviceRecords.magnet}}<br />
         x: {{device.MagnetometerData.x}}<br />
         y: {{device.MagnetometerData.y}}<br />
         z: {{device.MagnetometerData.z}}<br />
@@ -62,7 +70,7 @@
     </md-card>
   </div>
 </div>
-<div class="app-content" layout="row" *ngIf="device">
+<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
       <md-card-subtitle>Gyroscope</md-card-subtitle>
@@ -77,9 +85,70 @@
     <md-card>
       <md-card-subtitle>Other Data</md-card-subtitle>
       <md-card-content>
+        Highest Light Reading Reached: {{deviceRecords.light}}<br />
         Barometer: {{device.BarometerData}}<br />
         Luxometer: {{device.LuxometerData}}<br />
       </md-card-content>
+    </md-card>
+  </div>
+</div>
+<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <div style="display: block;">
+       <canvas baseChart
+                   [datasets]="lineChartData"
+                   [labels]="lineChartLabels"
+                   [options]="lineChartOptions"
+                   [colors]="lineChartColors"
+                   [legend]="lineChartLegend"
+                   [chartType]="lineChartType">
+        </canvas>
+       </div>
+    </md-card>
+  </div>
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <div style="display: block;">
+       <canvas baseChart
+                   [datasets]="accChartData"
+                   [labels]="accChartLabels"
+                   [options]="accChartOptions"
+                   [colors]="accChartColors"
+                   [legend]="accChartLegend"
+                   [chartType]="accChartType">
+        </canvas>
+       </div>
+    </md-card>
+  </div>
+</div>
+<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <div style="display: block;">
+       <canvas baseChart
+                   [datasets]="magChartData"
+                   [labels]="magChartLabels"
+                   [options]="magChartOptions"
+                   [colors]="magChartColors"
+                   [legend]="magChartLegend"
+                   [chartType]="magChartType">
+        </canvas>
+       </div>
+    </md-card>
+  </div>
+  <div class="card-col" flex="50" layout="column" flex-xs="100">
+    <md-card>
+      <div style="display: block;">
+       <canvas baseChart
+                   [datasets]="lightChartData"
+                   [labels]="lightChartLabels"
+                   [options]="lightChartOptions"
+                   [colors]="lightChartColors"
+                   [legend]="lightChartLegend"
+                   [chartType]="lightChartType">
+        </canvas>
+       </div>
     </md-card>
   </div>
 </div>

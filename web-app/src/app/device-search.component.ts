@@ -8,7 +8,7 @@ import { Device } from './device';
 @Component({
   selector: 'device-search',
   templateUrl: 'device-search.component.html',
-  styleUrls: [ 'app.component.css' ],
+  styleUrls: [ 'device-search.component.css' ],
   providers: [DeviceSearchService]
 })
 export class DeviceSearchComponent implements OnInit {

@@ -1,7 +1,9 @@
 export class Device {
   DeviceId: string;
-  Type: string;
-  Condition: string;
+  ShipmentCategory: string;
+  ShipmentId: string;
+  //Type: string;
+  //Condition: string;
   TemperatureData: {
     topTemp: string,
     ambientTemperature: string,
