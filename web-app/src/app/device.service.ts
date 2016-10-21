@@ -16,7 +16,7 @@ export class DeviceService {
 
   //given an id, get all the devices, then search by id
   getDevice(DeviceId: string): Promise<Device> {
-    return this.http.get(`/app/test/${DeviceId}`)
+    return this.http.get(`/app/device/${DeviceId}`)
                .toPromise()
                .then(response => response.json().data as Device)
                .catch(this.handleError);

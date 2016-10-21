@@ -14,6 +14,22 @@
         </canvas>
         <div style="justify-content: flex-start !important;" class = "app-content" layout = "row">
           <div flex="50" layout="column" flex-xs="100">
+            <p></p><md-icon style="color: #9C27B0;">label</md-icon>
+            Durable: {{doughnutChartData[0]}}
+            <p></p><md-icon style="color: #3F51B5;">label</md-icon>
+            Somehwat Sensitive: {{doughnutChartData[1]}}
+            <p></p><md-icon style="color: #009688;">label</md-icon>
+            Sensitive: {{doughnutChartData[2]}}
+            <p></p><md-icon style="color: #FFEB3B;">label</md-icon>
+            Very Sensitive: {{doughnutChartData[3]}}
+            <p></p><md-icon style="color: #F44336;">label</md-icon>
+            Critical: {{doughnutChartData[4]}}
+          </div>
+        </div>
+
+        <!-- HERE IS THE OLD ONE WITH DETAILED SHIPMENT CATEGORIES DONT DELETE -->
+        <!-- <div style="justify-content: flex-start !important;" class = "app-content" layout = "row">
+          <div flex="50" layout="column" flex-xs="100">
             <p></p><md-icon style="color: #F44336;">label</md-icon>
             Class0: {{doughnutChartData[0]}}
             <p></p><md-icon style="color: #E91E63;">label</md-icon>
@@ -53,14 +69,7 @@
             <p></p><md-icon style="color: #FF5722;">label</md-icon>
             Class15: {{doughnutChartData[15]}}
           </div>
-        </div>
-
-        <!-- <p></p><md-icon style="color: #ffa1b5;">label</md-icon>
-        Medical: {{doughnutChartData[0]}}
-        <p></p><md-icon style="color: #86c7f3;">label</md-icon>
-        Chilled: {{doughnutChartData[1]}}
-        <p></p><md-icon style="color: #ffe29a;">label</md-icon>
-        Fragile: {{doughnutChartData[2]}} -->
+        </div> -->
       </md-card-content>
     </md-card>
   </div>
