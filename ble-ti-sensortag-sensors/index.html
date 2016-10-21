@@ -337,7 +337,7 @@
 		tempObj["targetTemperature"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
 		tempObj["targetTemperaturecelsiusToFahrenheit"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
 		
-		sendMessage(tempObj,"Temperature")
+		sendMessage(tempObj,"TemperatureData")
 		
 		//sendMessage((ac >= 0 ? '+' : '') + ac.toFixed(2) ,"mqtt/TemperatureData/ambientTemperature/ac")
 		//sendMessage((af >= 0 ? '+' : '') + af.toFixed(2),"mqtt/TemperatureData/ambientTemperature-celsiusToFahrenheit/af")
