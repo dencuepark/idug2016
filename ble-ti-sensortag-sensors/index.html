@@ -332,10 +332,10 @@
 		displayValue('TemperatureData', string)
 		
 		var tempObj = new Object()
-		tempObj["ambientTemperature/ac"] = (ac >= 0 ? '+' : '') + ac.toFixed(2)
-		tempObj["ambientTemperature-celsiusToFahrenheit/af"] = (af >= 0 ? '+' : '') + af.toFixed(2)
-		tempObj["ambientTemperature/ac"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
-		tempObj["ambientTemperature-celsiusToFahrenheit/tf"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
+		tempObj["ambientTemperature"] = (ac >= 0 ? '+' : '') + ac.toFixed(2)
+		tempObj["ambientTemperaturecelsiusToFahrenheit"] = (af >= 0 ? '+' : '') + af.toFixed(2)
+		tempObj["targetTemperature"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
+		tempObj["targetTemperaturecelsiusToFahrenheit"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
 		
 		sendMessage(tempObj,"Temperature")
 		
@@ -372,7 +372,7 @@
 		acceObj["y"] = (y >= 0 ? '+' : '') + y.toFixed(5)
 		acceObj["z"] = (z >= 0 ? '+' : '') + z.toFixed(5)
 		
-		sendMessage(acceObj,"Accelerometer")
+		sendMessage(acceObj,"AccelerometerData")
 		
 		//sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/AccelerometerData/x")
 		//sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/AccelerometerData/y")
@@ -403,11 +403,11 @@
 		displayValue('HumidityData', string)
 		
 		var humiObj = new Object()
-		humiObj["Temperature"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
-		humiObj["celsiusToFahrenheit"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
+		humiObj["humidityTemperature"] = (tc >= 0 ? '+' : '') + tc.toFixed(2)
+		humiObj["humidityTemperaturecelsiusToFahrenheit"] = (tf >= 0 ? '+' : '') + tf.toFixed(2)
 		humiObj["relativeHumidity"] = (h >= 0 ? '+' : '') + h.toFixed(2)
 		
-		sendMessage(humiObj,"Humidity")
+		sendMessage(humiObj,"HumidityData")
 		
 		
 		//sendMessage((tc >= 0 ? '+' : '') + tc.toFixed(2),"mqtt/HumidityData/humidityTemperature")
@@ -442,7 +442,7 @@
 		mangObj["y"] = (y >= 0 ? '+' : '') + y.toFixed(5)
 		mangObj["z"] = (z >= 0 ? '+' : '') + z.toFixed(5)
 		
-		sendMessage(mangObj,"Magnetometer")
+		sendMessage(mangObj,"MagnetometerData")
 		
 		//sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/MagnetometerData/x")
 		//sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/MagnetometerData/y")
@@ -467,7 +467,7 @@
 		var baroObj = new Object()
 		baroObj["pressure"] = pressure.toPrecision(5)
 		
-		sendMessage(baroObj,"Barometer")
+		sendMessage(pressure.toPrecision(5),"BarometerData")
 		
 		//sendMessage(pressure.toPrecision(5),"mqtt/BarometerData/pressure")
 	}
@@ -495,7 +495,7 @@
 		gyroObj["y"] = (y >= 0 ? '+' : '') + y.toFixed(5)
 		gyroObj["z"] = (z >= 0 ? '+' : '') + z.toFixed(5)
 		
-		sendMessage(gyroObj,"Gyroscope")
+		sendMessage(gyroObj,"GyroscopeData")
 		
 		//sendMessage((x >= 0 ? '+' : '') + x.toFixed(5),"mqtt/GyroscopeData/x")
 		//sendMessage((y >= 0 ? '+' : '') + y.toFixed(5),"mqtt/GyroscopeData/y")
@@ -517,7 +517,7 @@
 		var luxoObj = new Object()
 		luxoObj["value"] = value.toPrecision(5)
 		
-		sendMessage(luxoObj,"Luxometer")
+		sendMessage(value.toPrecision(5),"Luxometer")
 		
 		//sendMessage(value.toPrecision(5),"mqtt/LuxometerData/value")
 	}
