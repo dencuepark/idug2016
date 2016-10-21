@@ -7,7 +7,7 @@ var io = require('socket.io').listen(server);
 var couchbase = require('couchbase')
 // var cluster = new couchbase.Cluster('couchbase://localhost/');
 var cluster = new couchbase.Cluster(`couchbase://172.30.10.67:11210`)
-var bucket = cluster.openBucket('default');
+var bucket = cluster.openBucket('shipment');
 var N1qlQuery = couchbase.N1qlQuery;
 var ViewQuery = couchbase.ViewQuery;
 
