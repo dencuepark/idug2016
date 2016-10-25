@@ -251,7 +251,7 @@ evothings.tisensortag.createGenericInstance = function()
 	 */
 	instance.getDeviceId = function()
 	{
-		return "DEVICEINFO_SERVICE="instance.DEVICEINFO_SERVICE + " ,FIRMWARE_DATA=" + instance.FIRMWARE_DATA + " " +
+		return "DEVICEINFO_SERVICE="instance.DEVICEINFO_SERVICE + " ,FIRMWARE_DATA=" + instance.FIRMWARE_DATA
 	}
 
 	/**
