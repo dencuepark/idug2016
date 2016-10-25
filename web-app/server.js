@@ -46,39 +46,41 @@ app.get('/detail/*', function(req, res) {
 // filter the data array for partial matches on the searched value DeviceId
 // then send the result
 app.get('/app/search/:DeviceId', function(req, res){
-  var query = ViewQuery.from('dev_csms', 'recentData').group_level('1')/*.key(['1234','3','d3'])*/;
+  var query = ViewQuery.from('csms', 'recentData').group_level('1');
   bucket.query(query, function(err,results){
     var keys = []
     for(i in results){
       keys.push(results[i].value[2]);
     }
-    bucket.getMulti(keys, function (err, result) {
-      var thisdata = Object.keys(result).map(function(k) { return result[k].value });
-      var search = req.params.DeviceId;
-      var thisdata = thisdata.filter(
-        function isMatch(value){
-          var re = new RegExp(search);
-          return re.test(value.DeviceId);
-        }
-      );
-      var devices = JSON.stringify({
-        "data" : thisdata
+      if(keys.length > 0){
+        bucket.getMulti(keys, function (err, result) {
+        var thisdata = Object.keys(result).map(function(k) { return result[k].value });
+        var search = req.params.DeviceId;
+        var thisdata = thisdata.filter(
+          function isMatch(value){
+            var re = new RegExp(search);
+            return re.test(value.DeviceId);
+          }
+        );
+        var devices = JSON.stringify({
+          "data" : thisdata
+        });
+        res.send(devices);
       });
-      res.send(devices);
-    });
+    }
   });
 });
 
 
 app.get('/app/device/:DeviceId', function(req, res){
-  var query = ViewQuery.from('dev_csms', 'recentData').group_level('1').range([req.params.DeviceId,'0','0'],[''+(+req.params.DeviceId+1),'0','0']);
+  var query = ViewQuery.from('csms', 'recentData').group_level('1').range([""+req.params.DeviceId],[""+(+req.params.DeviceId+1)]);
   bucket.query(query, function(err,results){
     if(results[0]){
       bucket.get(results[0].value[2], function (err, result) {
         var devices = JSON.stringify({
           "data" : result.value
         })
-        //console.log(devices);
+        // console.log(devices);
         res.send(devices);
        });
     }
@@ -86,7 +88,7 @@ app.get('/app/device/:DeviceId', function(req, res){
 });
 
 app.get('/app/records/:DeviceId', function(req, res){
-  var query = ViewQuery.from('dev_csms','highestAll').group_level('1').key(req.params.DeviceId);
+  var query = ViewQuery.from('csms','highestAll').group_level('1').key(""+req.params.DeviceId);
   bucket.query(query, function(err, results){
     if(results[0]){
       var records = JSON.stringify({
@@ -98,9 +100,9 @@ app.get('/app/records/:DeviceId', function(req, res){
 });
 
 app.get('/app/history/:DeviceId', function(req, res){
-  var query = ViewQuery.from('dev_csms', 'history')
+  var query = ViewQuery.from('csms', 'history')
                        .group_level('1')
-                       .range([req.params.DeviceId,'0'],[''+(+req.params.DeviceId+1),'0']);
+                       .range([""+req.params.DeviceId],[""+(+req.params.DeviceId+1)]);
   bucket.query(query, function(err,results){
     if(results[0]){
       var history = JSON.stringify({
@@ -114,14 +116,14 @@ app.get('/app/history/:DeviceId', function(req, res){
 });
 
 app.get('/app/typecount', function(req, res) {
-  var query = ViewQuery.from('dev_csms', 'categoryCount').group_level('1');
+  var query = ViewQuery.from('csms', 'categoryCount').group_level('1').stale(ViewQuery.Update.NONE);
   bucket.query(query, function(err,results){
     var thisdata = {"Class0": 0, "Class1": 0, "Class2": 0, "Class3": 0,
                     "Class4": 0, "Class5": 0, "Class6": 0, "Class7": 0,
                     "Class8": 0, "Class9": 0, "Class10": 0, "Class11": 0,
                     "Class12": 0, "Class13": 0, "Class14": 0, "Class15": 0};
     for(i in results){
-        thisdata[results[i].key] = results[i].value;
+        thisdata[results[i].key] = results[i].value.length;
     }
     // console.log(thisdata);
     var types = JSON.stringify({
@@ -133,7 +135,7 @@ app.get('/app/typecount', function(req, res) {
 });
 
 app.get('/app/typecondition',function(req,res){
-  var query = ViewQuery.from('dev_csms', 'highestAll').group_level('1')/*.key(['1234','3','d3'])*/;
+  var query = ViewQuery.from('csms', 'highestAll').group_level('1').stale(ViewQuery.Update.NONE);
   bucket.query(query, function(err,results){
     var good = {"Class0": 0, "Class1": 0, "Class2": 0, "Class3": 0,
                 "Class4": 0, "Class5": 0, "Class6": 0, "Class7": 0,
@@ -145,19 +147,21 @@ app.get('/app/typecondition',function(req,res){
                 "Class12": 0, "Class13": 0, "Class14": 0, "Class15": 0};
     //console.log(results);
     for(i in results){
-      var flag = +(results[i].value.ShipmentCategory.substring(5))
-      if(((flag & FLAG_TEMPERATURE)
-          && (results[i].value.temperature > tempThreshold)) ||
-        ((flag & FLAG_ACCELERATION)
-          && (results[i].value.acceleration > accThreshold)) ||
-        ((flag & FLAG_MAGNET)
-          && (results[i].value.magnet > magThreshold)) ||
-        ((flag & FLAG_LIGHT)
-          && (results[i].value.light > lightThreshold))) {
-            poor[results[i].value.ShipmentCategory]++;
-          }
-          else {
-            good[results[i].value.ShipmentCategory]++;
+      if(results[i].value && results[i].value.ShipmentCategory){
+        var flag = +(results[i].value.ShipmentCategory.substring(5))
+        if(((flag & FLAG_TEMPERATURE)
+            && (results[i].value.temperature > tempThreshold)) ||
+          ((flag & FLAG_ACCELERATION)
+            && (results[i].value.acceleration > accThreshold)) ||
+          ((flag & FLAG_MAGNET)
+            && (results[i].value.magnet > magThreshold)) ||
+          ((flag & FLAG_LIGHT)
+            && (results[i].value.light > lightThreshold))) {
+              poor[results[i].value.ShipmentCategory]++;
+            }
+            else {
+              good[results[i].value.ShipmentCategory]++;
+            }
           }
       // if(+(results[i].value.ShipmentCategory.substring(5)) & FLAG_TEMPERATURE)
       //   console.log("key: "+results[i].key + " type: " + results[i].value.ShipmentCategory);

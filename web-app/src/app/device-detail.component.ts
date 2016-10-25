@@ -54,6 +54,7 @@ export class DeviceDetailComponent implements OnInit {
       this.deviceService.getDeviceHistory(DeviceId)
         .then(deviceHistory => this.deviceHistory = deviceHistory);
 
+      if(this.deviceRecords) this.updateStatus();
       if(this.deviceHistory){
         //create new data arrays for the line charts
         var lineChartDataTemp: any[] = [
@@ -98,7 +99,7 @@ export class DeviceDetailComponent implements OnInit {
   }
 
   updateStatus(){
-    let flag = +(this.deviceRecords.ShipmentCategory);
+    let flag = +(this.deviceRecords.ShipmentCategory.substring(5));
     if(((flag & this.FLAG_TEMPERATURE)
         && (+this.deviceRecords.temperature > this.tempThreshold)) ||
       ((flag & this.FLAG_ACCELERATION)

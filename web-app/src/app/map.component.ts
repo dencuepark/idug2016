@@ -11,6 +11,16 @@ import { Component } from '@angular/core';
 })
 export class MapComponent {
   title: string = 'My first angular2-google-maps project';
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number = 41.082252;
+  lng: number = -74.174663;
+  zoom: number = 12;
+  // ngOnInit(){
+  //   if(navigator.geolocation){
+  //     navigator.geolocation.getCurrentPosition(function(position) {
+  //       console.log(position.coords);
+  //       this.lat = position.coords.latitude;
+  //       this.lng = position.coords.longitude;
+  //     });
+  //   };
+  // }
 }

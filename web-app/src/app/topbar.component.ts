@@ -17,7 +17,7 @@ export class TopbarComponent {
     this.router.navigate(link);
   }
   gotoDevices(): void {
-    let link = ['/devices'];
+    let link = ['/shipments'];
     this.router.navigate(link);
   }
 }

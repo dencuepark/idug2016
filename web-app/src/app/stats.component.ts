@@ -33,7 +33,7 @@ export class StatsComponent {
     }
   };
   public doughnutChartLabels:string[] =
-    ['Durable', 'Somewhat Sensitive', 'Sensitive', 'Very Sensitive', 'Critical'];
+    ['Durable', 'Somewhat Sensitive', 'Sensitive', 'Highly Sensitive', 'Critical'];
     // DETAILED SHIPMENT CATEGORY LABELS DO NOT DELETE
     // ['Class0', 'Class1', 'Class2', 'Class3',
     // 'Class4', 'Class5', 'Class6', 'Class7',
@@ -62,7 +62,7 @@ export class StatsComponent {
   };
   // public barChartLabels:string[] = ['Medical', 'Chilled', 'Fragile'];
   public barChartLabels:any[] =
-    ['Durable', ['Somewhat','Sensitive'], 'Sensitive', ['Very', 'Sensitive'], 'Critical'];
+    ['Durable', ['Somewhat','Sensitive'], 'Sensitive', ['Highly', 'Sensitive'], 'Critical'];
     // DETAILED SHIPMENT CATEGORY LABELS DO NOT DELETE
     // ['Class0', 'Class1', 'Class2', 'Class3',
     // 'Class4', 'Class5', 'Class6', 'Class7',
@@ -97,7 +97,7 @@ export class StatsComponent {
         var durable:number;
         var somewhatSensitive:number;
         var sensitive:number;
-        var verySensitive:number;
+        var highlySensitive:number;
         var critical:number;
         durable = +count.Class0;
         somewhatSensitive =
@@ -105,11 +105,11 @@ export class StatsComponent {
         sensitive =
           +count.Class3 + +count.Class5 + +count.Class6 + +count.Class9 +
           +count.Class10 + +count.Class12;
-        verySensitive =
+        highlySensitive =
           +count.Class7 + +count.Class11 + +count.Class13 + +count.Class14
         critical = +count.Class15;
         this.doughnutChartData =
-        [durable, somewhatSensitive, sensitive, verySensitive, critical];
+        [durable, somewhatSensitive, sensitive, highlySensitive, critical];
         // DETAILED SHIPMENT CATEGORY DATA DO NOT DELETE
         // [count.Class0, count.Class1, count.Class2, count.Class3,
         //  count.Class4, count.Class5, count.Class6, count.Class7,
@@ -129,12 +129,12 @@ export class StatsComponent {
         var goodDurable:number;
         var goodSomewhatSensitive:number;
         var goodSensitive:number;
-        var goodVerySensitive:number;
+        var goodHighlySensitive:number;
         var goodCritical:number;
         var poorDurable:number;
         var poorSomewhatSensitive:number;
         var poorSensitive:number;
-        var poorVerySensitive:number;
+        var poorHighlySensitive:number;
         var poorCritical:number;
         goodDurable = +count.good.Class0;
         goodSomewhatSensitive =
@@ -143,7 +143,7 @@ export class StatsComponent {
         goodSensitive =
           +count.good.Class3 + +count.good.Class5 + +count.good.Class6 +
           +count.good.Class9 + +count.good.Class10 + +count.good.Class12;
-        goodVerySensitive =
+        goodHighlySensitive =
           +count.good.Class7 + +count.good.Class11 + +count.good.Class13 +
           +count.good.Class14
         goodCritical = +count.good.Class15;
@@ -155,17 +155,17 @@ export class StatsComponent {
         poorSensitive =
           +count.poor.Class3 + +count.poor.Class5 + +count.poor.Class6 +
           +count.poor.Class9 + +count.poor.Class10 + +count.poor.Class12;
-        poorVerySensitive =
+        poorHighlySensitive =
           +count.poor.Class7 + +count.poor.Class11 + +count.poor.Class13 +
           +count.poor.Class14
         poorCritical = +count.poor.Class15;
 
         this.barChartData = [
             {data: [goodDurable, goodSomewhatSensitive, goodSensitive,
-              goodVerySensitive, goodCritical],
+              goodHighlySensitive, goodCritical],
             label: 'Good Condition'},
             {data: [poorDurable, poorSomewhatSensitive, poorSensitive,
-              poorVerySensitive, poorCritical],
+              poorHighlySensitive, poorCritical],
             label: 'Poor Condition'}
           // DETAILED SHIPMENT CATEGORY DATA DO NOT REMOVE
           // {data: [count.good.Class0, count.good.Class1, count.good.Class2, count.good.Class3,
@@ -195,7 +195,7 @@ export class StatsComponent {
 
   // events
   public chartClicked(e:any):void {
-    console.log(e);
+    //console.log(e);
   }
 
   public chartHovered(e:any):void {

@@ -1,16 +1,16 @@
-<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
+<div class="app-content" layout="row" *ngIf="device && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card style="min-height:200px;">
-      <md-card-title>Info for device #{{device.DeviceId}}</md-card-title>
+      <md-card-title>Info for shipment {{device.DeviceId}}</md-card-title>
       <md-card-subtitle>{{device.ShipmentCategory}}</md-card-subtitle>
       <md-card-content>
         <!-- <div *ngIf="device.Condition === 'poor'"> -->
-        <div *ngIf="maxTemp > 55">
+        <div *ngIf="!goodCondition">
           Shipment Status: <button md-icon-button>
             <md-icon style="color:red;">priority_high</md-icon></button>
         </div>
         <!-- <div *ngIf="device.Condition === 'good'"> -->
-        <div *ngIf="maxTemp <= 55">
+        <div *ngIf="goodCondition">
           Shipment Status: <md-icon style="color:green;">check</md-icon>
         </div>
       </md-card-content>
@@ -25,7 +25,7 @@
     </md-card>
   </div>
 </div>
-<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
+<div class="app-content" layout="row" *ngIf="device && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
       <md-card-subtitle>Temperature</md-card-subtitle>
@@ -48,7 +48,7 @@
     </md-card>
   </div>
 </div>
-<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
+<div class="app-content" layout="row" *ngIf="device && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
       <md-card-subtitle>Humidity</md-card-subtitle>
@@ -70,7 +70,7 @@
     </md-card>
   </div>
 </div>
-<div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
+<div class="app-content" layout="row" *ngIf="device && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
       <md-card-subtitle>Gyroscope</md-card-subtitle>
