@@ -243,6 +243,16 @@ evothings.tisensortag.createGenericInstance = function()
 	{
 		return instance.deviceModel
 	}
+	
+	/**
+	 * Public. Get device model number.
+	 * @instance
+	 * @public
+	 */
+	instance.getDeviceId = function()
+	{
+		return "DEVICEINFO_SERVICE="instance.DEVICEINFO_SERVICE + " ,FIRMWARE_DATA=" + instance.FIRMWARE_DATA + " " +
+	}
 
 	/**
 	 * Public. Get firmware string.
