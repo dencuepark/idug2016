@@ -648,8 +648,8 @@
 		else{
 			obj.ModelId = sensortag.id
 			obj.DeviceModel = sensortag.getDeviceModel()
-			//obj.DeviceId = "1Z99999999999999"+Math.floor((Math.random() * 100) + 1)
-			obj.DeviceId = sensortag.getDeviceId()
+			obj.DeviceId = "1Z9999999999990000" //+Math.floor((Math.random() * 100) + 1)
+			//obj.DeviceId = sensortag.getDeviceId()
 			obj.FirmwareString = sensortag.getFirmwareString()
 			obj.Timestamp = Math.floor(Date.now() / 1000)
 			obj.ShipmentCategory = "Class11"
