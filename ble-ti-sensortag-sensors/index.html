@@ -286,7 +286,7 @@
 	function keypressHandler(data)
 	{
 		// Update background color.
-		alert(data)
+		//alert(data)
 		switch (data[0])
 		{
 			case 0:
@@ -617,7 +617,7 @@
     }
 
     function onConnectionLost(response) {
-		alert("onConnectionLost")
+		//alert("onConnectionLost")
         setTimeout(MQTTconnect, reconnectTimeout);
         $('#status').val("connection lost: " + responseObject.errorMessage + ". Reconnecting");
 
