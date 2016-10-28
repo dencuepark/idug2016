@@ -1,4 +1,4 @@
-FROM   172.30.246.110:5000/costanzo-sandbox-uat/nodejs-4-rhel7-idug:latest
+FROM   172.30.246.110:5000/costanzo-sandbox-dev/nodejs-4-rhel7-idug:latest
 
 MAINTAINER Nick Costanzo <ncostanzo@ups.com>
 
@@ -25,6 +25,8 @@ COPY typings.json typings.json
 RUN npm install
 RUN npm install couchbase
 RUN typings install
+RUN npm install @angular-cli/ast-tools@1.0.0
+RUN npm install @angular-cli/base-href-webpack@1.0.0
 RUN ng build --prod
 
 # Change permissions to all copied resources
