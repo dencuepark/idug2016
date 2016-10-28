@@ -19,6 +19,7 @@ export class StatsService {
   //get all of the devices
   getTypeCounts(): Promise<any> {
     return this.http.get('/app/typecount')
+               .timeout(60000000, new Error('timeout exceeded'))
                .toPromise()
                .then(response => response.json().data)
                .catch(this.handleError);
@@ -26,6 +27,7 @@ export class StatsService {
 
   getConditionCounts(): Promise<any> {
     return this.http.get('/app/typecondition')
+               .timeout(60000000, new Error('timeout exceeded'))
                .toPromise()
                .then(response => response.json().data)
                .catch(this.handleError);

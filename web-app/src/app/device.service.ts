@@ -17,6 +17,7 @@ export class DeviceService {
   //given an id, get all the devices, then search by id
   getDevice(DeviceId: string): Promise<Device> {
     return this.http.get(`/app/device/${DeviceId}`)
+               .timeout(6000000, new Error('timeout exceeded'))
                .toPromise()
                .then(response => response.json().data as Device)
                .catch(this.handleError);
@@ -25,6 +26,7 @@ export class DeviceService {
   //get the highest values for the specified device
   getDeviceRecords(DeviceId: string): Promise<DeviceRecords> {
     return this.http.get(`/app/records/${DeviceId}`)
+               .timeout(6000000, new Error('timeout exceeded'))
                .toPromise()
                .then(response => response.json().data as DeviceRecords)
                .catch(this.handleError);
@@ -32,6 +34,7 @@ export class DeviceService {
 
   getDeviceHistory(DeviceId: string): Promise<DeviceHistory> {
     return this.http.get(`/app/history/${DeviceId}`)
+               .timeout(6000000, new Error('timeout exceeded'))
                .toPromise()
                .then(response => response.json().data as DeviceHistory)
                .catch(this.handleError);

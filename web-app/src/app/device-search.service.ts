@@ -12,6 +12,7 @@ export class DeviceSearchService {
     return this.http
                /*.get(`/app/test/?DeviceId=${term}`)*/
                .get(`/app/search/${term}`)
+               .timeout(6000000, new Error('timeout exceeded'))
                .map((r: Response) => r.json().data as Device[]);
   }
 

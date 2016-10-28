@@ -84,7 +84,7 @@ export class StatsComponent {
 
   ngOnInit(): void {
 
-    let timer = Observable.timer(1000,1000);
+    let timer = Observable.timer(0,16*1000);
     timer.subscribe(t=> {
         this.tickerFunc(t);
     });
@@ -108,6 +108,11 @@ export class StatsComponent {
         highlySensitive =
           +count.Class7 + +count.Class11 + +count.Class13 + +count.Class14
         critical = +count.Class15;
+        if(isNaN(durable)) durable = this.doughnutChartData[0];
+        if(isNaN(somewhatSensitive)) durable = this.doughnutChartData[1];
+        if(isNaN(sensitive)) durable = this.doughnutChartData[2];
+        if(isNaN(highlySensitive)) durable = this.doughnutChartData[3];
+        if(isNaN(critical)) durable = this.doughnutChartData[4];
         this.doughnutChartData =
         [durable, somewhatSensitive, sensitive, highlySensitive, critical];
         // DETAILED SHIPMENT CATEGORY DATA DO NOT DELETE

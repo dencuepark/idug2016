@@ -56,6 +56,8 @@ export class DeviceDetailComponent implements OnInit {
 
       if(this.deviceRecords) this.updateStatus();
       if(this.deviceHistory){
+        this.deviceHistory.timestamps =
+          this.formatTimestamps(this.deviceHistory.timestamps);
         //create new data arrays for the line charts
         var lineChartDataTemp: any[] = [
           {data: this.deviceHistory.temperatures, label: 'Temperature'}
@@ -113,6 +115,27 @@ export class DeviceDetailComponent implements OnInit {
         else {
           this.goodCondition = true;
         }
+  }
+
+  formatTimestamps(arr: string[]):string[]{
+    for(var i = 0; i < arr.length; i++){
+      var date = new Date(+arr[i]*1000);
+      var year = date.getFullYear();
+      var month = date.getMonth()+1;
+      var day = date.getDate();
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var seconds = date.getSeconds();
+      if(!isNaN(year) && !isNaN(month) && !isNaN(day) && !isNaN(hours)
+      && !isNaN(minutes) && !isNaN(seconds))
+        arr[i] = month+"/"+day+"/"+year+"-"+hours+":"+minutes+":"+seconds;
+      // let seconds:number = +arr[i] % 60;
+      // let minutes:number = Math.floor(+arr[i]/60) % 60;
+      // let hours:number = Math.floor(+arr[i]/(60*60)) %24;
+      // let days:number = Math.floor(+arr[i]/(60*60*24));
+      // arr[i] = days+":"+hours+"-"+minutes+"-"+seconds;
+    }
+    return arr;
   }
 
   //initial values for thermometer history line chart
