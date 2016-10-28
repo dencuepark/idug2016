@@ -1,15 +1,15 @@
 <div class="app-content" layout="row" *ngIf="device && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card style="min-height:200px;">
+      <!-- General info and status for shipment, and a button to return to
+      the previous page -->
       <md-card-title>Info for shipment {{device.DeviceId}}</md-card-title>
       <md-card-subtitle>{{device.ShipmentCategory}}</md-card-subtitle>
       <md-card-content>
-        <!-- <div *ngIf="device.Condition === 'poor'"> -->
         <div *ngIf="!goodCondition">
           Shipment Status: <button md-icon-button>
             <md-icon style="color:red;">priority_high</md-icon></button>
         </div>
-        <!-- <div *ngIf="device.Condition === 'good'"> -->
         <div *ngIf="goodCondition">
           Shipment Status: <md-icon style="color:green;">check</md-icon>
         </div>
@@ -21,10 +21,14 @@
   </div>
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
+      <!-- google map -->
       <map-component></map-component>
     </md-card>
   </div>
 </div>
+<!--
+Info for each individual censor - highest recorded data and current data
+-->
 <div class="app-content" layout="row" *ngIf="device && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
@@ -92,6 +96,9 @@
     </md-card>
   </div>
 </div>
+<!--
+Charts for complete history of device for each sensor
+-->
 <div class="app-content" layout="row" *ngIf="device && deviceHistory && deviceRecords">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>

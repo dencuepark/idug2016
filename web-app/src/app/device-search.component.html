@@ -1,13 +1,9 @@
 <div class = "app-content">
   <md-card>
+    <!-- Search box that takes a shipment ID. Clicking the search button or pressing
+    enter starts the searh -->
     <div id="search-component">
       <h4>Search By Shipment ID</h4>
-      <!--<mdl-textfield #searchBox
-            type="text"
-            label="Number..."
-            pattern="-?[0-9]*(\.[0-9]+)?"
-            error-msg="Input is not a number!"
-            (keyup)="search(searchBox.value)"></mdl-textfield>-->
       <button md-icon-button>
          <md-icon (click)="search(searchBox.value)"
                   class="md-24">search</md-icon>
@@ -16,18 +12,14 @@
                 (keyup.enter)="search(searchBox.value)"
                 value="{{this.urlTerm}}">
       </md-input>
-
-
     </div>
   </md-card>
-    <div>
-      <div *ngFor="let device of results"
-           (click)="gotoDetail(device)" class="search-result" >
-        <md-card><md-card-content><button md-button>{{device.DeviceId}}</button></md-card-content></md-card>
-      </div>
-      <!--<div *ngFor="let device of devices | async"
-           (click)="gotoDetail(device)" class="search-result" >
-        <md-card><button md-button>{{device.DeviceId}}</button></md-card>
-      </div>-->
+  <!-- For each result retrieved from the search, display a card with the result's
+  ID and a button linking to the details page for that result -->
+  <div>
+    <div *ngFor="let device of results"
+         (click)="gotoDetail(device)" class="search-result" >
+      <md-card><md-card-content><button md-button>{{device.DeviceId}}</button></md-card-content></md-card>
     </div>
+  </div>
 </div>

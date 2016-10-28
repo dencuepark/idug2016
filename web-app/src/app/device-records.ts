@@ -1,3 +1,4 @@
+//model for device records
 export class DeviceRecords{
   temperature: string;
   acceleration: string;

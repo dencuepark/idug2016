@@ -1,3 +1,4 @@
+//model for device history
 export class DeviceHistory {
   timestamps: string[];
   temperatures: string[];

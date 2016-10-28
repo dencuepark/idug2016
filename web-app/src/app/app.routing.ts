@@ -2,11 +2,11 @@ import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { StatsComponent } from './stats.component';
-import { DevicesComponent } from './devices.component';
+import { DeviceSearchComponent } from './device-search.component';
 import { DeviceDetailComponent } from './device-detail.component';
 
-//Setup routes for navigating to the /stats, /devices, and generated /detail
-//pages.
+//Setup routes for navigating to the /stats, /shipments, /search, and generated
+// /detail pages.
 /*TODO: Write a "page not found" route for all other paths*/
 const appRoutes: Routes = [
   {
@@ -24,11 +24,11 @@ const appRoutes: Routes = [
   },
   {
     path: 'search/:term',
-    component: DevicesComponent
+    component: DeviceSearchComponent
   },
   {
     path: 'shipments',
-    component: DevicesComponent
+    component: DeviceSearchComponent
   }
 ];
 

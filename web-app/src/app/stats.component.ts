@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component } from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 
 import { StatsService } from './stats.service';
@@ -10,22 +9,174 @@ import { StatsService } from './stats.service';
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent {
+  //Fields for the total active shipments, number of good shipments, number of
+  //poor shipments. Read by the template to display
   private activeShipments: number = 0;
   private goodCount: number = 0;
   private poorCount: number = 0;
 
-  messages = [];
-  typesConnection;
-  conditionConnection;
+  //Types to represent each type of shipment
+  TYPE_DURABLE: number = 0;
+  TYPE_SOMEWHATSENSITIVE: number = 1;
+  TYPE_SENSITIVE: number = 2;
+  TYPE_HIGHLYSENSITIVE: number = 3;
+  TYPE_CRITICAL: number = 4;
 
   constructor(
-    private route: ActivatedRoute,
     private statsService: StatsService
   ) {}
 
+  /**
+  * Start a timer that tics every 16 seconds.
+  * Is 16 an aritrary number? Yes. At least its a power of 2!
+  */
+  ngOnInit(): void {
+    let timer = Observable.timer(0,16*1000);
+    timer.subscribe(t=> {
+        this.tickerFunc(t);
+    });
+  }
+
+  /**
+  * Events that are triggered when a chart is clicked or hovered over.
+  * They don't do anything at the moment...
+  * TODO: maybe use these to navigate to search results with the relevent
+  * device set
+  */
+  public chartClicked(e:any):void { }
+  public chartHovered(e:any):void { }
+
+  /**
+  * Boss: "These charts aren't going to update themselves! Get to work!"
+  * Employee: "Actually I wrote a timer so they actually DO update themselves"
+  * Boss: "I don't care what time it is! If you don't update these charts,
+  * you're fired!"
+  * (its a timer that updates the charts)
+  */
+  tickerFunc(tick){
+    this.updateDoughnut();
+    this.updateBarChart();
+  }
+
+  /**
+  * Gets the total number of shipments for each of the 16 shipment categories
+  * Iterates through the list of properties, and checks if they qualify as
+  * durable, somewhat sensitive, sensitive, highly sensitive, or critical.
+  * durable has 0 sensors, critical has 4, etc. Gives the doughnut chart a
+  * new data array with this calculated info.
+  */
+  updateDoughnut() {
+    //update doughnut
+    this.statsService.getTypeCounts().then(count => {
+      var durable:number=0;   var somewhatSensitive:number=0;
+      var sensitive:number=0; var highlySensitive:number=0;
+      var critical:number=0;  var total:number = 0;
+      for (var property in count) {
+        if (count.hasOwnProperty(property)) {
+          if(!isNaN(+count[property])){
+            let flag:number = +property.substring(5);
+            let category:number = this.bitCount(flag);
+            if(category == this.TYPE_DURABLE)
+              durable += +count[property];
+            else if(category == this.TYPE_SOMEWHATSENSITIVE)
+              somewhatSensitive += +count[property];
+            else if(category == this.TYPE_SENSITIVE)
+              sensitive += +count[property];
+            else if(category == this.TYPE_HIGHLYSENSITIVE)
+              highlySensitive += +count[property];
+            else if(category == this.TYPE_CRITICAL)
+              critical += +count[property];
+            total += +count[property];
+          }
+        }
+      }
+      this.doughnutChartData =
+      [durable, somewhatSensitive, sensitive, highlySensitive, critical];
+      this.activeShipments = total;
+    });
+  }
+
+  /**
+  * This works the same as updateDoughnutChart, except it gets the number of
+  * shipments that are in good condition, and the number of shipments in poor
+  * condition; grouped by shipment category. Gives the bar chart a new data
+  * array with this calculated info.
+  */
+  updateBarChart() {
+    //update bar chart
+    this.statsService.getConditionCounts().then(count => {
+      var goodDurable:number=0;   var goodSomewhatSensitive:number=0;
+      var goodSensitive:number=0; var goodHighlySensitive:number=0;
+      var goodCritical:number=0;  var goodTotal:number=0;
+      var poorDurable:number=0;   var poorSomewhatSensitive:number=0;
+      var poorSensitive:number=0; var poorHighlySensitive:number=0;
+      var poorCritical:number=0;  var poorTotal:number=0;
+      for (var property in count.good) {
+        if(count.good.hasOwnProperty(property)){
+          if(!isNaN(+count.good[property])){
+            let flag:number = +property.substring(5);
+            let category:number = this.bitCount(flag);
+            if(category == this.TYPE_DURABLE)
+              goodDurable += +count.good[property];
+            else if(category == this.TYPE_SOMEWHATSENSITIVE)
+              goodSomewhatSensitive += +count.good[property];
+            else if(category == this.TYPE_SENSITIVE)
+              goodSensitive += +count.good[property];
+            else if(category == this.TYPE_HIGHLYSENSITIVE)
+              goodHighlySensitive += +count.good[property];
+            else if(category == this.TYPE_CRITICAL)
+              goodCritical += +count.good[property];
+            goodTotal += +count.good[property];
+          }
+        }
+      }
+      for (var property in count.poor) {
+        if(count.good.hasOwnProperty(property)){
+          if(!isNaN(+count.poor[property])){
+            let flag:number = +property.substring(5);
+            let category:number = this.bitCount(flag);
+            if(category == this.TYPE_DURABLE)
+              poorDurable += +count.poor[property];
+            else if(category == this.TYPE_SOMEWHATSENSITIVE)
+              poorSomewhatSensitive += +count.poor[property];
+            else if(category == this.TYPE_SENSITIVE)
+              poorSensitive += +count.poor[property];
+            else if(category == this.TYPE_HIGHLYSENSITIVE)
+              poorHighlySensitive += +count.poor[property];
+            else if(category == this.TYPE_CRITICAL)
+              poorCritical += +count.poor[property];
+            poorTotal += +count.poor[property];
+          }
+        }
+      }
+      this.barChartData = [
+          {data: [goodDurable, goodSomewhatSensitive, goodSensitive,
+            goodHighlySensitive, goodCritical],
+          label: 'Good Condition'},
+          {data: [poorDurable, poorSomewhatSensitive, poorSensitive,
+            poorHighlySensitive, poorCritical],
+          label: 'Poor Condition'}
+        ];
+        this.goodCount = goodTotal;
+        this.poorCount = poorTotal;
+    });
+  }
+
+  /**
+  * Simple helper method that gets the # of on bits in a number/bitmask
+  */
+  bitCount(v: number):number{
+    let c:number = 0;
+    for(c = 0; v; c++){ v &= v-1; }
+    return c;
+  }
+
+  /*********************
+  Initialize Stats Charts
+  *********************/
+
   // Doughnut
   public doughnutChartOptions:any = {
-    //maintainAspectRatio: false,
     responsive: true,
     animation: false,
     legend: {
@@ -33,24 +184,15 @@ export class StatsComponent {
     }
   };
   public doughnutChartLabels:string[] =
-    ['Durable', 'Somewhat Sensitive', 'Sensitive', 'Highly Sensitive', 'Critical'];
-    // DETAILED SHIPMENT CATEGORY LABELS DO NOT DELETE
-    // ['Class0', 'Class1', 'Class2', 'Class3',
-    // 'Class4', 'Class5', 'Class6', 'Class7',
-    // 'Class8', 'Class9', 'Class10', 'Class11',
-    // 'Class12', 'Class13', 'Class14', 'Class15'];
+    ['Durable', 'Somewhat Sensitive', 'Sensitive', 'Highly Sensitive',
+    'Critical'];
   public doughnutChartData:number[] =
     [0, 0, 0, 0, 0];
-    // [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   public doughnutChartType:string = 'doughnut';
   public doughnutChartColors:any[] =
     [{ backgroundColor: ["#9C27B0", "#3F51B5", "#009688",  "#FFEB3B",
                          "#F44336"] }];
-  // DETAILED SHIPMENT CATEGORY COLORS DO NOT DELTE
-  //   [{ backgroundColor: ["#F44336", "#E91E63", "#9C27B0", "#673AB7",
-  //                        "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4",
-  //                        "#009688", "#4CAF50", "#8BC34A", "#CDDC39",
-  //                        "#FFEB3B", "#FFC107", "#FF9800", "#FF5722"] }];
+
   //Bar
   public barChartOptions:any = {
     animation: false,
@@ -60,14 +202,9 @@ export class StatsComponent {
       display: false
     }
   };
-  // public barChartLabels:string[] = ['Medical', 'Chilled', 'Fragile'];
   public barChartLabels:any[] =
-    ['Durable', ['Somewhat','Sensitive'], 'Sensitive', ['Highly', 'Sensitive'], 'Critical'];
-    // DETAILED SHIPMENT CATEGORY LABELS DO NOT DELETE
-    // ['Class0', 'Class1', 'Class2', 'Class3',
-    // 'Class4', 'Class5', 'Class6', 'Class7',
-    // 'Class8', 'Class9', 'Class1', 'Class11',
-    // 'Class12', 'Class13', 'Class14', 'Class15'];
+    ['Durable', ['Somewhat','Sensitive'], 'Sensitive', ['Highly', 'Sensitive'],
+    'Critical'];
   public barChartType:string = 'bar';
   private barChartColors: any[] =
     [ { backgroundColor: '#03A9F4' }, { backgroundColor: '#F44336' } ]
@@ -75,135 +212,8 @@ export class StatsComponent {
 
   public barChartData:any[] = [
     {data: [0, 0, 0, 0, 0],
-    // {data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
      label: 'Good Condition'},
     {data: [0, 0, 0, 0, 0],
-    // {data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
      label: 'Poor Condition'}
   ];
-
-  ngOnInit(): void {
-
-    let timer = Observable.timer(0,16*1000);
-    timer.subscribe(t=> {
-        this.tickerFunc(t);
-    });
-  }
-
-  tickerFunc(tick){
-    //update doughnut
-    this.route.params.forEach((params: Params) => {
-      this.statsService.getTypeCounts().then(count => {
-        var durable:number;
-        var somewhatSensitive:number;
-        var sensitive:number;
-        var highlySensitive:number;
-        var critical:number;
-        durable = +count.Class0;
-        somewhatSensitive =
-          +count.Class1 + +count.Class2 + +count.Class4 + +count.Class8;
-        sensitive =
-          +count.Class3 + +count.Class5 + +count.Class6 + +count.Class9 +
-          +count.Class10 + +count.Class12;
-        highlySensitive =
-          +count.Class7 + +count.Class11 + +count.Class13 + +count.Class14
-        critical = +count.Class15;
-        if(isNaN(durable)) durable = this.doughnutChartData[0];
-        if(isNaN(somewhatSensitive)) durable = this.doughnutChartData[1];
-        if(isNaN(sensitive)) durable = this.doughnutChartData[2];
-        if(isNaN(highlySensitive)) durable = this.doughnutChartData[3];
-        if(isNaN(critical)) durable = this.doughnutChartData[4];
-        this.doughnutChartData =
-        [durable, somewhatSensitive, sensitive, highlySensitive, critical];
-        // DETAILED SHIPMENT CATEGORY DATA DO NOT DELETE
-        // [count.Class0, count.Class1, count.Class2, count.Class3,
-        //  count.Class4, count.Class5, count.Class6, count.Class7,
-        //  count.Class8, count.Class9, count.Class10, count.Class11,
-        //  count.Class12, count.Class13, count.Class14, count.Class15],
-        this.activeShipments =
-        +count.Class0 + +count.Class1 + +count.Class2 + +count.Class3 +
-        +count.Class4 + +count.Class5 + +count.Class6 + +count.Class7 +
-        +count.Class8 + +count.Class9 + +count.Class10 + +count.Class11 +
-        +count.Class12 + +count.Class13 + +count.Class14 + +count.Class15;
-      });
-    });
-
-    //update bar chart
-    this.route.params.forEach((params: Params) => {
-      this.statsService.getConditionCounts().then(count => {
-        var goodDurable:number;
-        var goodSomewhatSensitive:number;
-        var goodSensitive:number;
-        var goodHighlySensitive:number;
-        var goodCritical:number;
-        var poorDurable:number;
-        var poorSomewhatSensitive:number;
-        var poorSensitive:number;
-        var poorHighlySensitive:number;
-        var poorCritical:number;
-        goodDurable = +count.good.Class0;
-        goodSomewhatSensitive =
-          +count.good.Class1 + +count.good.Class2 + +count.good.Class4 +
-          +count.good.Class8;
-        goodSensitive =
-          +count.good.Class3 + +count.good.Class5 + +count.good.Class6 +
-          +count.good.Class9 + +count.good.Class10 + +count.good.Class12;
-        goodHighlySensitive =
-          +count.good.Class7 + +count.good.Class11 + +count.good.Class13 +
-          +count.good.Class14
-        goodCritical = +count.good.Class15;
-
-        poorDurable = +count.poor.Class0;
-        poorSomewhatSensitive =
-          +count.poor.Class1 + +count.poor.Class2 + +count.poor.Class4 +
-          +count.poor.Class8;
-        poorSensitive =
-          +count.poor.Class3 + +count.poor.Class5 + +count.poor.Class6 +
-          +count.poor.Class9 + +count.poor.Class10 + +count.poor.Class12;
-        poorHighlySensitive =
-          +count.poor.Class7 + +count.poor.Class11 + +count.poor.Class13 +
-          +count.poor.Class14
-        poorCritical = +count.poor.Class15;
-
-        this.barChartData = [
-            {data: [goodDurable, goodSomewhatSensitive, goodSensitive,
-              goodHighlySensitive, goodCritical],
-            label: 'Good Condition'},
-            {data: [poorDurable, poorSomewhatSensitive, poorSensitive,
-              poorHighlySensitive, poorCritical],
-            label: 'Poor Condition'}
-          // DETAILED SHIPMENT CATEGORY DATA DO NOT REMOVE
-          // {data: [count.good.Class0, count.good.Class1, count.good.Class2, count.good.Class3,
-          //  count.good.Class4, count.good.Class5, count.good.Class6, count.good.Class7,
-          //  count.good.Class8, count.good.Class9, count.good.Class10, count.good.Class11,
-          //  count.good.Class12, count.good.Class13, count.good.Class14, count.good.Class15],
-          //   label: 'Good Condition'},
-          // {data: [count.poor.Class0, count.poor.Class1, count.poor.Class2, count.poor.Class3,
-          //  count.poor.Class4, count.poor.Class5, count.poor.Class6, count.poor.Class7,
-          //  count.poor.Class8, count.poor.Class9, count.poor.Class10, count.poor.Class11,
-          //  count.poor.Class12, count.poor.Class13, count.poor.Class14, count.poor.Class15],
-          //   label: 'Poor Condition'}
-          ];
-          this.goodCount =
-            +count.good.Class0 + +count.good.Class1 + +count.good.Class2 + +count.good.Class3 +
-            +count.good.Class4 + +count.good.Class5 + +count.good.Class6 + +count.good.Class7 +
-            +count.good.Class8 + +count.good.Class9 + +count.good.Class10 + +count.good.Class11 +
-            +count.good.Class12 + +count.good.Class13 + +count.good.Class14 + +count.good.Class15;
-          this.poorCount =
-            +count.poor.Class0 + +count.poor.Class1 + +count.poor.Class2 + +count.poor.Class3 +
-            +count.poor.Class4 + +count.poor.Class5 + +count.poor.Class6 + +count.poor.Class7 +
-            +count.poor.Class8 + +count.poor.Class9 + +count.poor.Class10 + +count.poor.Class11 +
-            +count.poor.Class12 + +count.poor.Class13 + +count.poor.Class14 + +count.poor.Class15;
-        });
-    });
-  }
-
-  // events
-  public chartClicked(e:any):void {
-    //console.log(e);
-  }
-
-  public chartHovered(e:any):void {
-    //console.log(e);
-  }
 }

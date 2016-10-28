@@ -1,3 +1,4 @@
+//model for Device
 export class Device {
   DeviceId: string;
   ShipmentCategory: string;

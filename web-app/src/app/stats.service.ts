@@ -1,5 +1,5 @@
 import { Injectable }    from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Http } from '@angular/http';
 
 import * as io from 'socket.io-client';
 import { Observable } from 'rxjs/Rx';
@@ -11,28 +11,44 @@ import { Device } from './device';
 @Injectable()
 export class StatsService {
 
-  private headers = new Headers({'Content-Type': 'application/json'});
   private socket;
 
+  /**
+  * @http: used to make get rquests to the Nodejs server
+  */
   constructor(private http: Http) { }
 
-  //get all of the devices
+  /**
+  * Use the /app/typecount endpoint to retrieve the aggregate statistical data
+  * regarding the number of active shipments per shipment category. Comes in
+  * the form of {"Class0": "#", "Class1": "#", ..., "Class15": "#"}
+  */
   getTypeCounts(): Promise<any> {
     return this.http.get('/app/typecount')
-               .timeout(60000000, new Error('timeout exceeded'))
+               .timeout(1000*60*2, new Error('timeout exceeded'))
                .toPromise()
                .then(response => response.json().data)
                .catch(this.handleError);
   }
 
+  /**
+  * Use the /app/typecondition endpoint to retrieve the aggregate statistical
+  * data regarding the number of active shipments per shipment category,
+  * grouped by "good condition" and "poor condition". This data comes in the
+  * form of {"good": {"Class0": "#", "Class1": "#", ..., "Class15": "#"},
+  * "poor": {"Class0": "#", "Class1": "#", ..., "Class15": "#"}}
+  */
   getConditionCounts(): Promise<any> {
     return this.http.get('/app/typecondition')
-               .timeout(60000000, new Error('timeout exceeded'))
+               .timeout(1000*60*2, new Error('timeout exceeded'))
                .toPromise()
                .then(response => response.json().data)
                .catch(this.handleError);
   }
 
+  /**
+  * Handle any errors that may occur.
+  */
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
     return Promise.reject(error.message || error);

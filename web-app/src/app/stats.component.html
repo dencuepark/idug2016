@@ -1,6 +1,7 @@
 <div class = "app-content" layout="row">
   <div class="card-col" flex="50" layout="column" flex-xs="100">
     <md-card>
+      <!-- Doughnut chart -->
       <md-card-title>Active Shipments: {{activeShipments}}</md-card-title>
       <md-card-content>
         <canvas baseChart
@@ -26,55 +27,12 @@
             Critical: {{doughnutChartData[4]}}
           </div>
         </div>
-
-        <!-- HERE IS THE OLD ONE WITH DETAILED SHIPMENT CATEGORIES DONT DELETE -->
-        <!-- <div style="justify-content: flex-start !important;" class = "app-content" layout = "row">
-          <div flex="50" layout="column" flex-xs="100">
-            <p></p><md-icon style="color: #F44336;">label</md-icon>
-            Class0: {{doughnutChartData[0]}}
-            <p></p><md-icon style="color: #E91E63;">label</md-icon>
-            Class1: {{doughnutChartData[1]}}
-            <p></p><md-icon style="color: #9C27B0;">label</md-icon>
-            Class2: {{doughnutChartData[2]}}
-            <p></p><md-icon style="color: #673AB7;">label</md-icon>
-            Class3: {{doughnutChartData[3]}}
-          </div>
-          <div flex="50" layout="column" flex-xs="100">
-            <p></p><md-icon style="color: #3F51B5;">label</md-icon>
-            Class4: {{doughnutChartData[4]}}
-            <p></p><md-icon style="color: #2196F3;">label</md-icon>
-            Class5: {{doughnutChartData[5]}}
-            <p></p><md-icon style="color: #03A9F4;">label</md-icon>
-            Class6: {{doughnutChartData[6]}}
-            <p></p><md-icon style="color: #00BCD4;">label</md-icon>
-            Class7: {{doughnutChartData[7]}}
-          </div>
-          <div flex="50" layout="column" flex-xs="100">
-            <p></p><md-icon style="color: #009688;">label</md-icon>
-            Class8: {{doughnutChartData[8]}}
-            <p></p><md-icon style="color: #4CAF50;">label</md-icon>
-            Class9: {{doughnutChartData[9]}}
-            <p></p><md-icon style="color: #8BC34A;">label</md-icon>
-            Class10: {{doughnutChartData[10]}}
-            <p></p><md-icon style="color: #CDDC39;">label</md-icon>
-            Class11: {{doughnutChartData[11]}}
-          </div>
-          <div flex="50" layout="column" flex-xs="100">
-            <p></p><md-icon style="color: #FFEB3B;">label</md-icon>
-            Class12: {{doughnutChartData[12]}}
-            <p></p><md-icon style="color: #FFC107;">label</md-icon>
-            Class13: {{doughnutChartData[13]}}
-            <p></p><md-icon style="color: #FF9800;">label</md-icon>
-            Class14: {{doughnutChartData[14]}}
-            <p></p><md-icon style="color: #FF5722;">label</md-icon>
-            Class15: {{doughnutChartData[15]}}
-          </div>
-        </div> -->
       </md-card-content>
     </md-card>
   </div>
   <div class="card-col" flex="50" layout="column" flex-sm="100">
     <md-card>
+      <!-- Bar chart -->
       <md-card-content>
         <canvas baseChart
           [datasets]="barChartData"
@@ -91,9 +49,6 @@
         <p></p><md-icon style="color: #F44336;">label</md-icon>
         Poor Condition: {{poorCount}}
       </md-card-content>
-      <!-- <md-card-actions>
-        <button style="margin-left: 10px;" md-button color="accent" (click)="randomize()">Update</button>
-      </md-card-actions> -->
     </md-card>
   </div>
 </div>
