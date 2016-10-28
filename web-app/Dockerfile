@@ -1,4 +1,4 @@
-FROM   172.30.246.110:5000/costanzo-sandbox-dev/nodejs-4-rhel7-idug:latest
+FROM   172.30.246.110:5000/costanzo-sandbox-uat/nodejs-4-rhel7-idug:latest
 
 MAINTAINER Nick Costanzo <ncostanzo@ups.com>
 

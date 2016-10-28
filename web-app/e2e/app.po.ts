@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor/globals';
 
-export class KrangDemoPage {
+export class CSMSDemoPage {
   navigateTo() {
     return browser.get('/');
   }

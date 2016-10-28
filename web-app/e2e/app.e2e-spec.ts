@@ -1,10 +1,10 @@
-import { KrangDemoPage } from './app.po';
+import { CSMSDemoPage } from './app.po';
 
-describe('krang-demo App', function() {
-  let page: KrangDemoPage;
+describe('CSMS-demo App', function() {
+  let page: CSMSDemoPage;
 
   beforeEach(() => {
-    page = new KrangDemoPage();
+    page = new CSMSDemoPage();
   });
 
   it('should display message saying app works', () => {
